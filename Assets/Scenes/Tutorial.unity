@@ -813,46 +813,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 548291454}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0d157331425afc4691ba3a94fac89b1, type: 3}
+  m_Script: {fileID: 11500000, guid: e7d8609a47e26094c8570740e2ead3bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionType: 2
+  interactionsType: 05000000
   isOneShot: 0
   coolDown: 0
   startDelay: 0
-  loopType: 0
-  duration: 1
-  accelCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  activate: 0
-  OnStartCommand: {fileID: 0}
-  OnStopCommand: {fileID: 0}
-  onStartAudio: {fileID: 1307866770}
-  onEndAudio: {fileID: 0}
-  toOrtho: 0
-  camera: {fileID: 548291459}
 --- !u!4 &548291458 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400002, guid: baec086904791744185aaa07a6cf55c2,
@@ -877,7 +844,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0d157331425afc4691ba3a94fac89b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionType: 1
+  interactionsType: 0100000002000000
   isOneShot: 0
   coolDown: 0
   startDelay: 0
@@ -912,6 +879,40 @@ MonoBehaviour:
   OnStopCommand: {fileID: 0}
   onStartAudio: {fileID: 840959255}
   onEndAudio: {fileID: 0}
+  start:
+    e00: 0
+    e01: 0
+    e02: 0
+    e03: 0
+    e10: 0
+    e11: 0
+    e12: 0
+    e13: 0
+    e20: 0
+    e21: 0
+    e22: 0
+    e23: 0
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 0
+  end:
+    e00: 0
+    e01: 0
+    e02: 0
+    e03: 0
+    e10: 0
+    e11: 0
+    e12: 0
+    e13: 0
+    e20: 0
+    e21: 0
+    e22: 0
+    e23: 0
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 0
   toOrtho: 1
   camera: {fileID: 548291459}
 --- !u!1 &559897222

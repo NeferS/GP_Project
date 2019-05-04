@@ -321,7 +321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 763a01e17ceaeda45a91bf0895632916, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionType: 1
+  interactionsType: 01000000
   isOneShot: 1
   coolDown: 0
   startDelay: 2
@@ -652,7 +652,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 763a01e17ceaeda45a91bf0895632916, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionType: 1
+  interactionsType: 01000000
   isOneShot: 1
   coolDown: 0
   startDelay: 2
@@ -873,7 +873,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b3e62178a504134e896a72bc8654d59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionType: 1
+  interactionsType: 01000000
   isOneShot: 1
   coolDown: 0
   startDelay: 0
@@ -900,7 +900,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf689cc047ef29c4d994a435190d6d22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionType: 5
+  interactionsType: 05000000
   isOneShot: 0
   coolDown: 0
   startDelay: 0
@@ -5711,7 +5711,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9354acfe70ad1a44b9601afc7a40a848, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionType: 1
+  interactionsType: 01000000
   isOneShot: 1
   coolDown: 0
   startDelay: 0
@@ -5883,7 +5883,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9354acfe70ad1a44b9601afc7a40a848, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionType: 1
+  interactionsType: 01000000
   isOneShot: 1
   coolDown: 0
   startDelay: 0

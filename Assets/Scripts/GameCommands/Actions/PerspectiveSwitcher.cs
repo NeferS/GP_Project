@@ -1,21 +1,18 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class PerspectiveSwitcher : SimpleTransformer
 {
     private ProjectionMatrixes matrixes;
-    Matrix4x4 start, end;
+    public Matrix4x4 start, end;
 
     public bool toOrtho = true;
-
     public new Camera camera;
 
     private void Start()
     {
         matrixes = GetComponent<ProjectionMatrixes>();
-    }
-
-    private void Update()
-    {
         if (!toOrtho)
         {
             start = matrixes.ortho;

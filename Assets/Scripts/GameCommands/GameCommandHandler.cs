@@ -8,7 +8,7 @@ using UnityEngine;
 [RequireComponent(typeof(GameCommandReceiver))]
 public abstract class GameCommandHandler : MonoBehaviour
 {
-    public GameCommandType interactionType;
+    public GameCommandType[] interactionsType = new GameCommandType[1];
     public bool isOneShot = false;
     public float coolDown = 0;
     public float startDelay = 0;
@@ -46,6 +46,8 @@ public abstract class GameCommandHandler : MonoBehaviour
 
     protected virtual void Awake()
     {
-        GetComponent<GameCommandReceiver>().Register(interactionType, this);
+        GameCommandReceiver receiver = GetComponent<GameCommandReceiver>();
+        foreach (GameCommandType interaction in interactionsType)
+            receiver.Register(interaction, this);
     }
 }

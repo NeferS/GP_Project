@@ -48,6 +48,10 @@ public class PerspactiveInteractionManager : GameCommandHandler
         foreach (GameCommandReceiver receiver in interactables)
             receiver.Receive(GameCommandType.Activate);
         yield return new WaitForSeconds(interactionTime);
+        
+        //inverte le matrici della camera
+        camera.Receive(GameCommandType.Start);
+        yield return new WaitForSeconds(perspectiveSwitchTime);
 
         //resetta la proiezione della camera
         camera.Receive(GameCommandType.Deactivate);

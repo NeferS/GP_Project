@@ -34,7 +34,7 @@ public class TutorialController : Controller
     [SerializeField] private Text _cameraTxt;
     [SerializeField] private Image _cameraPanelImg;
     [SerializeField] private GameObject _cameraCheckBox;
-    private PerspectiveSwitcher[] _switchers;
+    private PerspectiveSwitcher _switcher;
 
     [SerializeField] private GameObject _player;
     [SerializeField] private Sprite _emptyCheckBox;
@@ -288,19 +288,16 @@ public class TutorialController : Controller
 
                     camTutorial.GetComponentInChildren<OnTriggerWarning>().controller = this;
 
-                    _switchers = _player.GetComponentsInChildren<PerspectiveSwitcher>();
+                    _switcher = _player.GetComponentInChildren<PerspectiveSwitcher>();
 
                     q = Q11;
                 }
                 break;
             case Q11:
-                foreach(PerspectiveSwitcher ps in _switchers)
+                if (_switcher.activate)
                 {
-                    if(ps.activate && ps.interactionType == GameCommandType.Activate)
-                    {
-                        SetFull(_cameraCheckBox);
-                        q = Q12;
-                    }
+                    SetFull(_cameraCheckBox);
+                    q = Q12;
                 }
                 break;
             case Q12:
