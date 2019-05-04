@@ -25,14 +25,38 @@ public class PerspectiveSwitcher : SimpleTransformer
         }
     }
 
-    public override void PerformTransform(float position)
+    public override void PerformInteraction(GameCommandType type)
     {
-        matrixes.orthoOn = !matrixes.orthoOn;
-        var curvePosition = accelCurve.Evaluate(position);
-        Matrix4x4 matrixPos = new Matrix4x4();
-        for (int i = 0; i < 16; i++)
-            matrixPos[i] = Mathf.Lerp(start[i], end[i], curvePosition);
-        camera.projectionMatrix = matrixPos;
+        activate = true;
+        lastReceived = type;
+        if (OnStartCommand != null) OnStartCommand.Send();
+        if (onStartAudio != null && (type == GameCommandType.Activate || type == GameCommandType.Deactivate))
+            onStartAudio.Play();
+    }
+
+    public override void PerformTransform(GameCommandType type, float position)
+    {
+        if(type == GameCommandType.Activate || type == GameCommandType.Deactivate)
+        {
+            matrixes.orthoOn = !matrixes.orthoOn;
+            var curvePosition = accelCurve.Evaluate(position);
+            Matrix4x4 matrixPos = new Matrix4x4();
+            for (int i = 0; i < 16; i++)
+                matrixPos[i] = Mathf.Lerp(start[i], end[i], curvePosition);
+            camera.projectionMatrix = matrixPos;
+        }
+        else if(type == GameCommandType.Reset)
+        {
+            InvertMatrixes();
+        }
+    }
+
+    private void InvertMatrixes()
+    {
+        var tmp = start;
+        start = end;
+        end = tmp;
+        toOrtho = !toOrtho;
     }
 }
 

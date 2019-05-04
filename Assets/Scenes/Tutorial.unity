@@ -804,22 +804,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebc9edfab2f379046a31a9e5bc3ef1a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &548291457
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 548291454}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7d8609a47e26094c8570740e2ead3bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactionsType: 05000000
-  isOneShot: 0
-  coolDown: 0
-  startDelay: 0
 --- !u!4 &548291458 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400002, guid: baec086904791744185aaa07a6cf55c2,
@@ -844,7 +828,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0d157331425afc4691ba3a94fac89b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionsType: 0100000002000000
+  interactionsType: 010000000200000006000000
   isOneShot: 0
   coolDown: 0
   startDelay: 0

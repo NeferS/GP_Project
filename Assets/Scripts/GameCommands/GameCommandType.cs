@@ -9,6 +9,7 @@ using UnityEngine;
         Deactivate,
         Open,
         Close,
-        Start
+        Start,
+        Reset
     }
 

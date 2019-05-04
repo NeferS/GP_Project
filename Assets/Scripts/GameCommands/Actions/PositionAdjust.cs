@@ -14,8 +14,9 @@ public class PositionAdjust : SimpleTransformer
 
     public bool isCameraLocked = false;
 
-    public override void PerformInteraction()
+    public override void PerformInteraction(GameCommandType type)
     {
+        base.PerformInteraction(type);
         if (!isCameraLocked)
         {
             cameraDefaultPosition = cameraPivot.localPosition;
@@ -25,12 +26,9 @@ public class PositionAdjust : SimpleTransformer
             cameraRigStartRotation = cameraPivot.parent.localEulerAngles;
         }
         isCameraLocked = !isCameraLocked;
-        activate = true;
-        if (OnStartCommand != null) OnStartCommand.Send();
-        if (onStartAudio != null) onStartAudio.Play();
     }
 
-    public override void PerformTransform(float position)
+    public override void PerformTransform(GameCommandType type, float position)
     {
         var curvePosition = accelCurve.Evaluate(position);
         if (isCameraLocked)

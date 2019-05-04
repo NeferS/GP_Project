@@ -49,7 +49,7 @@ public class MultipleTranslator : GameCommandHandler
         }
     }
 
-    public override void PerformInteraction()
+    public override void PerformInteraction(GameCommandType type)
     {
         activate = true;
         if (OnStartCommand != null) OnStartCommand.Send();

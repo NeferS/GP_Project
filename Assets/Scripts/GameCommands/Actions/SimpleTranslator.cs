@@ -8,7 +8,7 @@ public class SimpleTranslator : SimpleTransformer
     public Vector3 start;
     public Vector3 end;
 
-    public override void PerformTransform(float position)
+    public override void PerformTransform(GameCommandType type, float position)
     {
 
         var curvePosition = accelCurve.Evaluate(position);

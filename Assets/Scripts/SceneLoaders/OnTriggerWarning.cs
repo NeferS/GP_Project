@@ -2,22 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 [RequireComponent(typeof(Collider))]
 public class OnTriggerWarning : MonoBehaviour
 {
     public Controller controller;
     public bool particles = false;
-
-    void Start()
-    {
-        
-    }
-
-
-    void Update()
-    {
-        
-    }
 
     void OnTriggerEnter(Collider collider)
     {

@@ -17,10 +17,16 @@ public abstract class GameCommandHandler : MonoBehaviour
 
     float startTime = 0;
 
-    public abstract void PerformInteraction();
+    public abstract void PerformInteraction(GameCommandType type);
+
+    protected virtual IEnumerator DelayedPerformInteraction(GameCommandType type)
+    {
+        yield return new WaitForSeconds(startDelay);
+        PerformInteraction(type);
+    }
 
     [ContextMenu("Interact")]
-    public virtual void OnInteraction()
+    public virtual void OnInteraction(GameCommandType type)
     {
         if (isOneShot && isTriggered) return;
         isTriggered = true;
@@ -29,19 +35,19 @@ public abstract class GameCommandHandler : MonoBehaviour
             if (Time.time > startTime + coolDown)
             {
                 startTime = Time.time + startDelay;
-                ExecuteInteraction();
+                ExecuteInteraction(type);
             }
         }
         else
-            ExecuteInteraction();
+            ExecuteInteraction(type);
     }
 
-    void ExecuteInteraction()
+    void ExecuteInteraction(GameCommandType type)
     {
         if (startDelay > 0)
-            Invoke("PerformInteraction", startDelay);
+            StartCoroutine(DelayedPerformInteraction(type));
         else
-            PerformInteraction();
+            PerformInteraction(type);
     }
 
     protected virtual void Awake()

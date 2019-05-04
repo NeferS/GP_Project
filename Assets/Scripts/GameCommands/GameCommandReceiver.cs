@@ -5,23 +5,24 @@ using UnityEngine;
 //Class used to call the proper GameCommandHandler subclass to a given GameCommandType received from a subclass of SendGameCommand
 public class GameCommandReceiver : MonoBehaviour
 {
-    Dictionary<GameCommandType, List<System.Action>> handlers = new Dictionary<GameCommandType, List<System.Action>>();
+    Dictionary<GameCommandType, List<System.Action<GameCommandType>>> handlers = 
+                new Dictionary<GameCommandType, List<System.Action<GameCommandType>>>();
 
     public void Receive(GameCommandType e)
     {
-        List<System.Action> callbacks = null;
+        List<System.Action<GameCommandType>> callbacks = null;
         if (handlers.TryGetValue(e, out callbacks))
         {
-            foreach (var i in callbacks) i();
+            foreach (var i in callbacks) i(e);
         }
     }
 
     public void Register(GameCommandType type, GameCommandHandler handler)
     {
-        List<System.Action> callbacks = null;
+        List<System.Action<GameCommandType>> callbacks = null;
         if (!handlers.TryGetValue(type, out callbacks))
         {
-            callbacks = handlers[type] = new List<System.Action>();
+            callbacks = handlers[type] = new List<System.Action<GameCommandType>>();
         }
         callbacks.Add(handler.OnInteraction);
     }

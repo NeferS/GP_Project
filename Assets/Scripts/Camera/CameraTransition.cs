@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*UNUSED*/
 public class CameraTransition : MonoBehaviour
 {
 

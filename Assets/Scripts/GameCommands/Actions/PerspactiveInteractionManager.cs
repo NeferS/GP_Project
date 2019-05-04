@@ -13,12 +13,12 @@ public class PerspactiveInteractionManager : GameCommandHandler
                  perspectiveSwitchTime = 1f,
                  interactionTime = 5f;
 
-    public override void PerformInteraction()
+    public override void PerformInteraction(GameCommandType type)
     {
-        StartCoroutine(Interaction());
+        StartCoroutine(Interaction(type));
     }
 
-    private IEnumerator Interaction()
+    private IEnumerator Interaction(GameCommandType type)
     {
 
         // disattiva il CharacterController
@@ -50,7 +50,7 @@ public class PerspactiveInteractionManager : GameCommandHandler
         yield return new WaitForSeconds(interactionTime);
         
         //inverte le matrici della camera
-        camera.Receive(GameCommandType.Start);
+        camera.Receive(GameCommandType.Reset);
         yield return new WaitForSeconds(perspectiveSwitchTime);
 
         //resetta la proiezione della camera

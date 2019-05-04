@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SimpleEnabler : GameCommandHandler
 {
-    public override void PerformInteraction()
+    public override void PerformInteraction(GameCommandType type)
     {
         GetComponent<Collider>().enabled = true;
         GetComponent<MeshRenderer>().enabled = true;

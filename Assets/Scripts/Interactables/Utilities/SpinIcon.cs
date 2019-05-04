@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*Simple script that rotates an object. Used to rotate the interaction icon (the 'E' model).*/
 public class SpinIcon : MonoBehaviour
 {
     private float spinSpeed = 120.0f;

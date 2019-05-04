@@ -24,6 +24,7 @@ public abstract class SimpleTransformer : GameCommandHandler
     float position = 0f;
     float direction = 1f;
 
+    protected GameCommandType lastReceived;
     protected Platform m_Platform;
 
     [ContextMenu("Test Start Audio")]
@@ -39,9 +40,10 @@ public abstract class SimpleTransformer : GameCommandHandler
         m_Platform = GetComponentInChildren<Platform>();
     }
 
-    public override void PerformInteraction()
+    public override void PerformInteraction(GameCommandType type)
     {
         activate = true;
+        lastReceived = type;
         if (OnStartCommand != null) OnStartCommand.Send();
         if (onStartAudio != null) onStartAudio.Play();
     }
@@ -63,11 +65,11 @@ public abstract class SimpleTransformer : GameCommandHandler
                     LoopRepeat();
                     break;
             }
-            PerformTransform(position);
+            PerformTransform(lastReceived, position);
         }
     }
 
-    public virtual void PerformTransform(float position)
+    public virtual void PerformTransform(GameCommandType type, float position)
     {
 
     }

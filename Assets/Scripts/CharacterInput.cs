@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*MUST BE MERGED WITH THE NEW MOVEMENT SCRIPT*/
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(Rigidbody))]
 public class CharacterInput : MonoBehaviour

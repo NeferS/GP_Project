@@ -20,7 +20,5 @@ public class MainMenuController : Controller
         
     }
 
-    public override void ExitTriggered() { }
-
-    public void Quit() { Application.Quit(); }
+    public override void ExitTriggered() { Application.Quit(); }
 }
