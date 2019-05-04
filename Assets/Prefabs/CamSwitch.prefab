@@ -180,6 +180,8 @@ GameObject:
   - component: {fileID: 914028937569276268}
   - component: {fileID: 1002791413583202226}
   - component: {fileID: 889302022343621094}
+  - component: {fileID: 7504446248213933273}
+  - component: {fileID: 4073246010895959224}
   m_Layer: 16
   m_Name: CamSwitch
   m_TagString: Untagged
@@ -236,6 +238,37 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0282278, y: 2.4769855, z: 1.0156912}
   m_Center: {x: -0.0000743866, y: 1.2240566, z: 0.0054159164}
+--- !u!114 &7504446248213933273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 918098235748545144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd447daa21220ec438580546a7fcdffa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionType: 1
+  interactiveObject: {fileID: 0}
+  oneShot: 1
+  coolDown: 0
+  onSendAudio: {fileID: 0}
+  audioDelay: 0
+--- !u!114 &4073246010895959224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 918098235748545144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0415e4186d4d174db52dcbf31aba383, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interactIcon: {fileID: 918289322936929827}
 --- !u!1001 &918289322894598421
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -305,6 +338,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3cd776d7767cbd489f85247fca6faa1, type: 3}
+--- !u!1 &918289322936929827 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 43659062, guid: d3cd776d7767cbd489f85247fca6faa1,
+    type: 3}
+  m_PrefabInstance: {fileID: 918289322894598421}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &918289322936929826 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 43659063, guid: d3cd776d7767cbd489f85247fca6faa1,

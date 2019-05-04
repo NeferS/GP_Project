@@ -1,0 +1,62 @@
+﻿using UnityEngine;
+
+public class PositionAdjust : SimpleTransformer
+{
+    public Transform player;
+    public Transform cameraPivot;
+    public Transform cameraTarget;
+
+    //public Vector3 playerStartPosition;
+    private Quaternion playerStartRotation;
+    private Vector3 cameraDefaultPosition;
+    private Vector3 cameraDefaultRotation;
+    private Vector3 cameraRigStartRotation;
+
+    public bool isCameraLocked = false;
+
+    public override void PerformInteraction()
+    {
+        if (!isCameraLocked)
+        {
+            cameraDefaultPosition = cameraPivot.localPosition;
+            cameraDefaultRotation = cameraPivot.localEulerAngles;
+            //playerStartPosition = player.position;
+            playerStartRotation = player.rotation;
+            cameraRigStartRotation = cameraPivot.parent.localEulerAngles;
+        }
+        isCameraLocked = !isCameraLocked;
+        activate = true;
+        if (OnStartCommand != null) OnStartCommand.Send();
+        if (onStartAudio != null) onStartAudio.Play();
+    }
+
+    public override void PerformTransform(float position)
+    {
+        var curvePosition = accelCurve.Evaluate(position);
+        if (isCameraLocked)
+        {
+            //posizione player
+            //var playerPos =Vector3.Lerp(playerStartPosition, transform.position, curvePosition);
+            //player.GetComponent<CharacterController>().Move(playerPos-player.position);
+
+            //rotazione player
+            player.rotation = Quaternion.Lerp(playerStartRotation, transform.rotation, curvePosition);
+
+            //posizione camera
+            cameraPivot.localPosition = Vector3.Lerp(cameraDefaultPosition, cameraTarget.localPosition, curvePosition);
+            //cameraPivot.position = transform.TransformPoint(Vector3.Lerp(transform.TansformPoint(cameraDefoultPosition),cameraTarget.position,curvePosition);
+
+            //rotazione camera
+            cameraPivot.parent.localEulerAngles = Vector3.Lerp(cameraRigStartRotation, Vector3.zero, curvePosition);
+            cameraPivot.localEulerAngles = Vector3.Lerp(cameraDefaultRotation, cameraTarget.localEulerAngles, curvePosition);
+        }
+        else
+        {
+            //posizione camera
+            cameraPivot.localPosition = Vector3.Lerp(cameraTarget.localPosition, cameraDefaultPosition, curvePosition);
+
+            //rotazione camera
+            cameraPivot.localEulerAngles = Vector3.Lerp(cameraTarget.localEulerAngles, cameraDefaultRotation, curvePosition);
+        }
+    }
+}

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TutorialController : MonoBehaviour
+public class TutorialController : Controller
 {
     /*Intro Section*/
     //intro objects
@@ -29,8 +29,12 @@ public class TutorialController : MonoBehaviour
     [SerializeField] private GameObject _interactCheckBox;
 
     /*FieldCamera Section*/
-    [SerializeField] private GameObject stairPrefab;
-    private GameObject stair;
+    [SerializeField] private GameObject camTutorialPrefab;
+    private GameObject camTutorial;
+    [SerializeField] private Text _cameraTxt;
+    [SerializeField] private Image _cameraPanelImg;
+    [SerializeField] private GameObject _cameraCheckBox;
+    private PerspectiveSwitcher[] _switchers;
 
     [SerializeField] private GameObject _player;
     [SerializeField] private Sprite _emptyCheckBox;
@@ -38,11 +42,12 @@ public class TutorialController : MonoBehaviour
 
     private int q;
     private const float alphaVariationPerStep = 0.007f;
-    private bool[] keysPressed = { false, false, false, false, false, false, false, false };
-
     private const int Q0 = 0, Q1 = 1, Q2 = 2, Q3 = 3, Q4 = 4, Q5 = 5, Q6 = 6, Q7 = 7, Q8 = 8,
-                      Q9 = 9, Q10 = 10, Q11 = 11;
+                      Q9 = 9, Q10 = 10, Q11 = 11, Q12 = 12, Q13 = 13, Q14 = 14;
     private const int W = 0, A = 1, S = 2, D = 3, SPACE = 4, C = 5, E = 6, V = 7;
+
+    private bool[] keysPressed = { false, false, false, false, false, false, false, false };
+    private bool exitTriggered = false;
 
     void Start()
     {
@@ -51,7 +56,7 @@ public class TutorialController : MonoBehaviour
         _t0.color = new Color(_t0.color.r, _t0.color.g, _t0.color.b, 0);
         _t1.color = new Color(_t1.color.r, _t1.color.g, _t1.color.b, 0);
         _player.GetComponent<CharacterInput>().EnableMovement(false);
-        _player.GetComponent<CharacterInput>().EnableJumpAndCrouch(false);
+        _player.GetComponent<CharacterInput>().EnableJump(false);
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -143,12 +148,12 @@ public class TutorialController : MonoBehaviour
                     _jcTxt.enabled = true;
                     _jcImg.enabled = true;
                     q = Q5;
-                    _player.GetComponent<CharacterInput>().EnableJumpAndCrouch(true);
+                    _player.GetComponent<CharacterInput>().EnableJump(true);
                 }
                 break;
             case Q5:
                 if (Input.GetKeyDown(KeyCode.Space)) { keysPressed[SPACE] = true; }
-                if (Input.GetKeyDown(KeyCode.C)) { keysPressed[C] = true; }
+                if (Input.GetKeyDown(KeyCode.C) && _player.GetComponent<CharacterController>().isGrounded) { keysPressed[C] = true; }
                 if(keysPressed[SPACE] && keysPressed[C])
                 {
                     SetFull(_jcCheckBox);
@@ -259,16 +264,87 @@ public class TutorialController : MonoBehaviour
                     _interactTxt.enabled = false;
                     _interactImg.enabled = false;
 
-                    _player.transform.position = new Vector3(0.0f, 1.5f, 0.0f);
+                    _cameraPanelImg.enabled = true;
+                    _cameraCheckBox.GetComponent<Image>().enabled = true;
+                    _cameraTxt.enabled = true;
+
+                    _player.transform.position = new Vector3(-10.5f, 1.5f, 19.0f);
                     _player.transform.rotation = new Quaternion(0.0f, 0.0f, 0.0f, 0.0f);
+                    Vector3 angles = _player.transform.localEulerAngles;
+                    _player.transform.localEulerAngles = new Vector3(angles.x, 60.0f, angles.z);
+
                     Destroy(box);
                     box = null;
-                    stair = Instantiate(stairPrefab) as GameObject;
-                    stair.transform.position = new Vector3(0, 0, 12.5f);
+                    camTutorial = Instantiate(camTutorialPrefab) as GameObject;
+                    camTutorial.transform.position = new Vector3(0, 0, 12f);
+
+                    PerspactiveInteractionManager pim = camTutorial.GetComponentInChildren<PerspactiveInteractionManager>();
+                    pim.characterInput = _player.GetComponent<CharacterInput>();
+                    pim.camera = _player.GetComponentInChildren<GameCommandReceiver>();
+
+                    PositionAdjust pa = camTutorial.GetComponentInChildren<PositionAdjust>();
+                    pa.player = _player.transform;
+                    pa.cameraPivot = _player.GetComponentInChildren<CameraLook>().transform;
+
+                    camTutorial.GetComponentInChildren<OnTriggerWarning>().controller = this;
+
+                    _switchers = _player.GetComponentsInChildren<PerspectiveSwitcher>();
+
                     q = Q11;
                 }
                 break;
             case Q11:
+                foreach(PerspectiveSwitcher ps in _switchers)
+                {
+                    if(ps.activate && ps.interactionType == GameCommandType.Activate)
+                    {
+                        SetFull(_cameraCheckBox);
+                        q = Q12;
+                    }
+                }
+                break;
+            case Q12:
+                if (_cameraTxt.color.a > 0)
+                {
+                    if (_cameraTxt.color.a <= 100)
+                    {
+                        _cameraPanelImg.color = new Color(_cameraPanelImg.color.r, _cameraPanelImg.color.g,
+                                                          _cameraPanelImg.color.b, _cameraPanelImg.color.a - alphaVariationPerStep * 2);
+                    }
+                    Color cbColor = _cameraCheckBox.GetComponent<Image>().color;
+                    _cameraCheckBox.GetComponent<Image>().color = new Color(cbColor.r, cbColor.g, cbColor.b,
+                                                                            cbColor.a - alphaVariationPerStep * 2);
+                    _cameraTxt.color = new Color(_cameraTxt.color.r, _cameraTxt.color.g, _cameraTxt.color.b,
+                                                 _cameraTxt.color.a - alphaVariationPerStep * 2);
+                }
+                else
+                {
+                    q = Q13;
+                }
+                break;
+            case Q13:
+                if (exitTriggered)
+                {
+                    _cameraCheckBox.SetActive(false);
+                    _cameraPanelImg.color = new Color(_cameraPanelImg.color.r, _cameraPanelImg.color.g,
+                                                      _cameraPanelImg.color.b, 0.5f);
+                    Vector2 size = _cameraPanelImg.rectTransform.rect.size;
+                    Vector3 position = _cameraPanelImg.rectTransform.anchoredPosition;
+                    _cameraTxt.rectTransform.sizeDelta = size;
+                    _cameraTxt.rectTransform.localPosition = Vector3.zero;
+                    _cameraTxt.color = new Color(_cameraTxt.color.r, _cameraTxt.color.g, _cameraTxt.color.b, 1);
+                    _cameraTxt.text = "Congratulations! You have completed the tutorial. Press 'X' to return to the main menu.";
+                    _cameraTxt.alignment = TextAnchor.MiddleCenter;
+                    q = Q14;
+                }
+                break;
+            case Q14:
+                if (Input.GetKeyDown(KeyCode.X))
+                {
+                    _cameraTxt.enabled = false;
+                    _cameraPanelImg.enabled = false;
+                    GetComponent<SceneLoader>().Load(0);
+                }
                 break;
         }
     }
@@ -281,4 +357,6 @@ public class TutorialController : MonoBehaviour
                                                                  cbRect.position.y, cbRect.position.z);
         obj.GetComponent<Image>().sprite = _fullCheckBox;
     }
+
+    public override void ExitTriggered() { exitTriggered = true; }
 }

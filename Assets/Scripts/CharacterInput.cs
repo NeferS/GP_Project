@@ -7,16 +7,18 @@ using UnityEngine;
 public class CharacterInput : MonoBehaviour
 {
     public float speed;
+    public float jumpSpeed = 8.0f;
     public float horizontalSpeed = 1.5f;
-    public float gravity = -9.8f;
+    public float gravity = -20f;
 
     public bool movementEnabled = true;
     public bool rotationEnabled = true;
-    public bool jumpcrouchEnabled = true;
+    public bool jumpEnabled = true;
 
     private const float distanceFromInteractable = 1.0f;
     private float _normalSpeed = 6.0f;
 
+    private Vector3 movement = Vector3.zero;
     private CharacterController _charController;
 
     void Start()
@@ -30,24 +32,31 @@ public class CharacterInput : MonoBehaviour
     {
         if (movementEnabled)
         {
-            /*Normal movement section*/
-            float deltaZ = Input.GetAxis("Vertical") * speed;
-            Vector3 movement = new Vector3(0, 0, deltaZ);
-            movement = Vector3.ClampMagnitude(movement, speed);
-            movement.y = gravity;
-
-            movement *= Time.deltaTime;
-            movement = transform.TransformDirection(movement);
-            _charController.Move(movement);
-
-            if(rotationEnabled)
+            if(_charController.isGrounded)
             {
-                float deltaX = Input.GetAxis("Horizontal") * horizontalSpeed;
-                float rotationY = transform.localEulerAngles.y + deltaX;
-                transform.localEulerAngles = new Vector3(0, rotationY, 0);
+                /*Normal movement section*/
+                float deltaZ = Input.GetAxis("Vertical") * speed;
+                movement = new Vector3(0, 0, deltaZ);
+                movement = transform.TransformDirection(movement);
+
+                if (rotationEnabled)
+                {
+                    float deltaX = Input.GetAxis("Horizontal") * horizontalSpeed;
+                    float rotationY = transform.localEulerAngles.y + deltaX;
+                    transform.localEulerAngles = new Vector3(0, rotationY, 0);
+                }
+
+                /*Jump section*/
+                if (Input.GetKeyDown(KeyCode.Space) && jumpEnabled)
+                {
+                    movement.y += jumpSpeed;
+                }
             }
 
-            /*MISSING: Jump and crouch section*/
+            movement.y += gravity * Time.deltaTime;
+            _charController.Move(movement * Time.deltaTime);
+
+            /*MISSING: Crouch section*/
 
             /*Interaction with scene element section*/
             Ray ray = new Ray(transform.position, transform.forward);
@@ -75,10 +84,10 @@ public class CharacterInput : MonoBehaviour
 
     public void EnableMovement(bool enabled) { movementEnabled = enabled; }
     public void EnableRotation(bool enabled) { rotationEnabled = enabled; }
-    public void EnableJumpAndCrouch(bool enabled) { jumpcrouchEnabled = enabled; }
+    public void EnableJump(bool enabled) { jumpEnabled = enabled; }
     public void SetSpeed(float newSpeed) { speed = newSpeed; }
     public float normalSpeed
     {
-        get { return normalSpeed; }
+        get { return _normalSpeed; }
     }
 }

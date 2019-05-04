@@ -37,6 +37,7 @@ public class PullableObject : Interactable
         fj.connectedBody = with.GetComponent<Rigidbody>();
         CharacterInput character = with.GetComponent<CharacterInput>();
         character.EnableRotation(false);
+        character.EnableJump(false);
         character.SetSpeed(weightedSpeed);
     }
 
@@ -45,6 +46,7 @@ public class PullableObject : Interactable
         connected = false;
         Destroy(GetComponent<FixedJoint>());
         CharacterInput character = with.GetComponent<CharacterInput>();
+        character.EnableJump(true);
         character.EnableRotation(true);
         character.SetSpeed(character.normalSpeed);
     }
