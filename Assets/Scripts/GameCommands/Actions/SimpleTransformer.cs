@@ -1,6 +1,6 @@
 using UnityEngine;
 
-
+//TODO: comments
 public abstract class SimpleTransformer : GameCommandHandler
 {
     public enum LoopType

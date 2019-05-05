@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 
 //Base class to send command on different events (see in SendOnTrigger, SendOnBecameVisible etc. for example of subclasses)
+/*IMPORTED FROM THE '3DGamekit' FREE ASSETS IN THE UNITY STORE.*/
 [SelectionBase]
 public class SendGameCommand : MonoBehaviour
 {

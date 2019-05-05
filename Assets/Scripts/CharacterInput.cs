@@ -15,6 +15,7 @@ public class CharacterInput : MonoBehaviour
     public bool movementEnabled = true;
     public bool rotationEnabled = true;
     public bool jumpEnabled = true;
+    public bool crouchEnabled = true;
 
     private const float distanceFromInteractable = 1.0f;
     private float _normalSpeed = 6.0f;
@@ -86,6 +87,7 @@ public class CharacterInput : MonoBehaviour
     public void EnableMovement(bool enabled) { movementEnabled = enabled; }
     public void EnableRotation(bool enabled) { rotationEnabled = enabled; }
     public void EnableJump(bool enabled) { jumpEnabled = enabled; }
+    public void EnableCrouch(bool enabled) { crouchEnabled = enabled; }
     public void SetSpeed(float newSpeed) { speed = newSpeed; }
     public float normalSpeed
     {

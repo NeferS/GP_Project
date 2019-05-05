@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//TODO: comments
 public class MultipleTranslator : GameCommandHandler
 { 
     public bool activate = false;

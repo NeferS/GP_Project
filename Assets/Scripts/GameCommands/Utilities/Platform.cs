@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
+//TODO: comments
 public class Platform : MonoBehaviour
 {
     [SerializeField]

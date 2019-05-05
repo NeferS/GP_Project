@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//TODO: comments
 public class PerspectiveSwitcher : SimpleTransformer
 {
     private ProjectionMatrixes matrixes;

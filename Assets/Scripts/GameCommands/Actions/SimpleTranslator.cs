@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-
+//TODO: comments
 public class SimpleTranslator : SimpleTransformer
 {
     public new Rigidbody rigidbody;

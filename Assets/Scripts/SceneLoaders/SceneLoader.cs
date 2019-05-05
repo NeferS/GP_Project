@@ -5,14 +5,18 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 
+/*This class performs a fade to black from a scene and loads a previously specified scene.*/
 public class SceneLoader : MonoBehaviour
 {
     [SerializeField] private GameObject _gui;
+    /*More than one scene can be loaded by this script just selecting an index on this array, which
+     *contains the names of the desired scenes*/
     [SerializeField] private string[] scenesNames;
     public float fadingStep = 0.007f;
 
     private Image blackPanel;
     private const string scenesPath = "Scenes/";
+    /*if 'true', the script performs the fade to black and loads the new scene*/
     private bool load = false;
     private int _index;
 
@@ -36,7 +40,8 @@ public class SceneLoader : MonoBehaviour
             }
         }
     }
-
+    /*First of all, sets some important values for a correct execution of the 'LoadScene' method. Moreover, it disables
+     *any button from the gui (if it exists) because any of them could interfere with this*/
     public void Load(int index)
     {
         load = true;

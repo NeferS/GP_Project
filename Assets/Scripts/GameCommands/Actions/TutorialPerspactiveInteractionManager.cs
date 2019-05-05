@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PerspactiveInteractionManager : GameCommandHandler
+//TODO: comments and adjustment after Marco's work
+public class TutorialPerspactiveInteractionManager : GameCommandHandler
 {
     public CharacterInput characterInput;
     public GameCommandReceiver manager;
@@ -11,6 +12,7 @@ public class PerspactiveInteractionManager : GameCommandHandler
 
     public float moveCharacterTime = 3f,
                  perspectiveSwitchTime = 1f,
+                 cameraResetTime = 1.5f,
                  interactionTime = 5f;
 
     public override void PerformInteraction(GameCommandType type)
@@ -22,7 +24,7 @@ public class PerspactiveInteractionManager : GameCommandHandler
     {
 
         // disattiva il CharacterController
-        characterInput.EnableMovement(false);
+        characterInput.enabled = false;
 
         // disattiva gli script della camera che interferirebbero con PositionAdjust
         CameraLook mouseLook = characterInput.GetComponentInChildren<CameraLook>();
@@ -51,7 +53,7 @@ public class PerspactiveInteractionManager : GameCommandHandler
         
         //inverte le matrici della camera
         camera.Receive(GameCommandType.Reset);
-        yield return new WaitForSeconds(perspectiveSwitchTime);
+        yield return new WaitForSeconds(cameraResetTime);
 
         //resetta la proiezione della camera
         camera.Receive(GameCommandType.Deactivate);
@@ -62,7 +64,7 @@ public class PerspactiveInteractionManager : GameCommandHandler
         yield return new WaitForSeconds(moveCharacterTime);
 
         //riattiva il CharacterController e gli script della camera
-        characterInput.EnableMovement(true);
+        characterInput.enabled = true;
         if (mouseLook)
         {
             mouseLook.enabled = true;

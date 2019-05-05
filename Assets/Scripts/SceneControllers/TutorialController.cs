@@ -27,8 +27,7 @@ public class TutorialController : Controller
     [SerializeField] private Text _interactTxt;
     [SerializeField] private Image _interactPanelImg, _interactImg;
     [SerializeField] private GameObject _interactCheckBox;
-
-    /*FieldCamera Section*/
+    //perspective switch on camera objects
     [SerializeField] private GameObject camTutorialPrefab;
     private GameObject camTutorial;
     [SerializeField] private Text _cameraTxt;
@@ -278,14 +277,15 @@ public class TutorialController : Controller
                     camTutorial = Instantiate(camTutorialPrefab) as GameObject;
                     camTutorial.transform.position = new Vector3(0, 0, 12f);
 
-                    PerspactiveInteractionManager pim = camTutorial.GetComponentInChildren<PerspactiveInteractionManager>();
+                    TutorialPerspactiveInteractionManager pim = camTutorial.GetComponentInChildren<TutorialPerspactiveInteractionManager>();
                     pim.characterInput = _player.GetComponent<CharacterInput>();
                     pim.camera = _player.GetComponentInChildren<GameCommandReceiver>();
 
                     PositionAdjust pa = camTutorial.GetComponentInChildren<PositionAdjust>();
                     pa.player = _player.transform;
                     pa.cameraPivot = _player.GetComponentInChildren<CameraLook>().transform;
-
+                    
+                    camTutorial.GetComponentInChildren<ParticleSystem>().gameObject.AddComponent<OnTriggerWarning>();
                     camTutorial.GetComponentInChildren<OnTriggerWarning>().controller = this;
 
                     _switcher = _player.GetComponentInChildren<PerspectiveSwitcher>();
@@ -329,9 +329,9 @@ public class TutorialController : Controller
                     Vector3 position = _cameraPanelImg.rectTransform.anchoredPosition;
                     _cameraTxt.rectTransform.sizeDelta = size;
                     _cameraTxt.rectTransform.localPosition = Vector3.zero;
-                    _cameraTxt.color = new Color(_cameraTxt.color.r, _cameraTxt.color.g, _cameraTxt.color.b, 1);
                     _cameraTxt.text = "Congratulations! You have completed the tutorial. Press 'X' to return to the main menu.";
                     _cameraTxt.alignment = TextAnchor.MiddleCenter;
+                    _cameraTxt.color = new Color(_cameraTxt.color.r, _cameraTxt.color.g, _cameraTxt.color.b, 1);
                     q = Q14;
                 }
                 break;

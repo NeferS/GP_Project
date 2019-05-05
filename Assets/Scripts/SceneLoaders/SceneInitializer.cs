@@ -3,24 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Controller))]
-[RequireComponent(typeof(SceneLoader))]
-public class SceneInitializer : MonoBehaviour
+/*This abstract class performs a simple fade from black to the scene. When it ends, the 'DoAction' method is invoked
+ *on the subclasses; this method defines a specific action that has to be done after the fade completation.*/
+public abstract class SceneInitializer : MonoBehaviour
 {
     [SerializeField] private GameObject _gui;
-    public enum ActionOnCompletation
-    {
-        Nothing = 0,
-        ControllerAndLoader = 1
-    };
-    public ActionOnCompletation onCompletationAction = ActionOnCompletation.Nothing;
 
     private Image blackPanel;
     private float fadingStep = 0.007f;
 
     void Start()
     {
-        GetComponent<SceneLoader>().enabled = false;
         Reset();
     }
 
@@ -36,6 +29,7 @@ public class SceneInitializer : MonoBehaviour
         }
     }
 
+    /*Gets from the '_gui' the image that will be used to perform the fade or creates one if it doesn't exist*/
     public void Reset()
     {
         Image img = _gui.GetComponent<Image>();
@@ -46,19 +40,5 @@ public class SceneInitializer : MonoBehaviour
         blackPanel.color = Color.black;
     }
 
-    protected void DoAction()
-    {
-        switch (onCompletationAction)
-        {
-            case ActionOnCompletation.Nothing:
-                break;
-            case ActionOnCompletation.ControllerAndLoader:
-                GetComponent<Controller>().enabled = true;
-                SceneLoader sl = GetComponent<SceneLoader>();
-                sl.Reset();
-                sl.enabled = true;
-                enabled = false;
-                break;
-        }
-    }
+    public abstract void DoAction();
 }

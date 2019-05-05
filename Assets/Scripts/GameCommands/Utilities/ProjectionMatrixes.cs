@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//TODO: comments
 public class ProjectionMatrixes : MonoBehaviour
 
 {
     public Matrix4x4 ortho,
-                          perspective;
+                     perspective;
     public float near = .3f,
-                    fov = 50f,
-                    far = 1000f,
-                    orthographicSize = 10f;
+                 fov = 50f,
+                 far = 1000f,
+                 orthographicSize = 10f;
 
     private float aspect;
     private float previusAspect;
