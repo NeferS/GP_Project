@@ -7,7 +7,7 @@ using UnityEngine;
 public class RelativeMovement : MonoBehaviour
 {
     [SerializeField] private Transform target;
-
+    Animator animator;
     public float rotSpeed = 15.0f;
     public float moveSpeed = 6.0f;
     private CharacterController _charController;
@@ -22,6 +22,7 @@ public class RelativeMovement : MonoBehaviour
     {
         _charController = GetComponent<CharacterController>();
         _vertSpeed = minFall;
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -42,8 +43,22 @@ public class RelativeMovement : MonoBehaviour
             target.rotation = tmp;
             Quaternion direction = Quaternion.LookRotation(movement);
             transform.rotation = Quaternion.Lerp(transform.rotation, direction, rotSpeed * Time.deltaTime);
-            
+            Debug.Log(vertInput);
+
+
         }
+
+        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+        
+            animator.SetBool("Back", true);
+        else
+        //if (Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
+
+            animator.SetBool("Back", false);
+    
+
+
+       //animator.SetFloat("Speed", vertInput);
 
         bool hitGround = false;
         RaycastHit hit;
@@ -58,11 +73,15 @@ public class RelativeMovement : MonoBehaviour
         {
             if (Input.GetButtonDown("Jump")){
 
+                animator.SetBool("Jump", true);
                 _vertSpeed = jumpSpeed;
+
             }
             else
             {
+                animator.SetBool("Jump", false);
                 _vertSpeed = minFall;
+
             }
         }
         else
@@ -75,7 +94,8 @@ public class RelativeMovement : MonoBehaviour
 
             if (_charController.isGrounded)
             {
-                if(Vector3.Dot(movement, _contact.normal) < 0)
+               
+                if (Vector3.Dot(movement, _contact.normal) < 0)
                 {
                     movement = _contact.normal * moveSpeed;
                 }
