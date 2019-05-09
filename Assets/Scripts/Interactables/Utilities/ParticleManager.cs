@@ -35,6 +35,7 @@ public class ParticleManager : MonoBehaviour
         {
             _audioSource.clip = loopSound;
             _audioSource.loop = true;
+            _audioSource.dopplerLevel = 0.0f;
             _audioSource.Play();
         }
     }

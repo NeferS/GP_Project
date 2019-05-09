@@ -186,24 +186,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &5506553552607500627
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3648210297769421264}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 437e363bbe95bb74e8ba4befe9692b9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactionType: 1
-  interactiveObject: {fileID: 1970911200574445773}
-  oneShot: 1
-  coolDown: 1
-  onSendAudio: {fileID: 0}
-  audioDelay: 0
 --- !u!1 &4118624628934156715
 GameObject:
   m_ObjectHideFlags: 0
@@ -1560,15 +1542,19 @@ PrefabInstance:
       propertyPath: interactionType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6779676580045246943, guid: fb2572efe810b2d46bae7c1a7868d240,
+        type: 3}
+      propertyPath: interactionType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6779676580045246943, guid: fb2572efe810b2d46bae7c1a7868d240,
+        type: 3}
+      propertyPath: interactiveObject
+      value: 
+      objectReference: {fileID: 1970911200574445773}
     m_RemovedComponents:
     - {fileID: 7504446248213933273, guid: fb2572efe810b2d46bae7c1a7868d240, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: fb2572efe810b2d46bae7c1a7868d240, type: 3}
---- !u!1 &3648210297769421264 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 918098235748545144, guid: fb2572efe810b2d46bae7c1a7868d240,
-    type: 3}
-  m_PrefabInstance: {fileID: 4475652880677968808}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3653544017141762756 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 914028937569276268, guid: fb2572efe810b2d46bae7c1a7868d240,

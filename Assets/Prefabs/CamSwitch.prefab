@@ -180,8 +180,8 @@ GameObject:
   - component: {fileID: 914028937569276268}
   - component: {fileID: 1002791413583202226}
   - component: {fileID: 889302022343621094}
-  - component: {fileID: 7504446248213933273}
   - component: {fileID: 4073246010895959224}
+  - component: {fileID: 6779676580045246943}
   m_Layer: 16
   m_Name: CamSwitch
   m_TagString: Untagged
@@ -238,24 +238,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0282278, y: 2.4769855, z: 1.0156912}
   m_Center: {x: -0.0000743866, y: 1.2240566, z: 0.0054159164}
---- !u!114 &7504446248213933273
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 918098235748545144}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd447daa21220ec438580546a7fcdffa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactionType: 1
-  interactiveObject: {fileID: 0}
-  oneShot: 1
-  coolDown: 0
-  onSendAudio: {fileID: 0}
-  audioDelay: 0
 --- !u!114 &4073246010895959224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,6 +251,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interactIcon: {fileID: 8130447953693774331}
+  isOneShot: 1
+--- !u!114 &6779676580045246943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 918098235748545144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 437e363bbe95bb74e8ba4befe9692b9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionType: 0
+  interactiveObject: {fileID: 0}
+  oneShot: 0
+  coolDown: 1
+  onSendAudio: {fileID: 0}
+  audioDelay: 0
 --- !u!1001 &4162507920282404673
 PrefabInstance:
   m_ObjectHideFlags: 0

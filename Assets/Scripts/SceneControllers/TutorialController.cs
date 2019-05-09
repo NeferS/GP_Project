@@ -186,11 +186,12 @@ public class TutorialController : Controller
                     _interactCheckBox.GetComponent<Image>().enabled = true;
                     _interactTxt.enabled = true;
                     _interactImg.enabled = true;
-
-                    _player.transform.position = new Vector3(0.0f, 1.5f, 0.0f);
+                    
+                    _player.transform.localPosition = new Vector3(0.0f, 1.5f, 0.0f);
                     _player.transform.rotation = new Quaternion(0.0f, 0.0f, 0.0f, 0.0f);
                     box = Instantiate(boxPrefab) as GameObject;
                     box.transform.position = _player.transform.position + new Vector3(0.0f, -1.0f, 5.0f);
+
                     q = Q7;
                 }
                 break;
@@ -266,8 +267,8 @@ public class TutorialController : Controller
                     _cameraPanelImg.enabled = true;
                     _cameraCheckBox.GetComponent<Image>().enabled = true;
                     _cameraTxt.enabled = true;
-
-                    _player.transform.position = new Vector3(-10.5f, 1.5f, 19.0f);
+                    
+                    _player.transform.localPosition = new Vector3(-10.5f, 1.5f, 19.0f);
                     _player.transform.rotation = new Quaternion(0.0f, 0.0f, 0.0f, 0.0f);
                     Vector3 angles = _player.transform.localEulerAngles;
                     _player.transform.localEulerAngles = new Vector3(angles.x, 60.0f, angles.z);
@@ -294,7 +295,7 @@ public class TutorialController : Controller
                 }
                 break;
             case Q11:
-                if (_switcher.activate)
+                if (_switcher.onStartAudio.isPlaying)
                 {
                     SetFull(_cameraCheckBox);
                     q = Q12;
