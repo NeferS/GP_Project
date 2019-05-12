@@ -8,8 +8,8 @@ public class CharacterInput : MonoBehaviour
 {
     [SerializeField] private Transform target;
     Animator animator;
-    public float rotSpeed = 15.0f;
-    public float moveSpeed = 15.0f;
+    public float rotSpeed = 6f;
+    public float moveSpeed = 6f;
     public float jumpSpeed = 20.0f;
     public float gravity = -9.8f;
     public float terminalVelocity = -10.0f;
@@ -23,13 +23,13 @@ public class CharacterInput : MonoBehaviour
     private ControllerColliderHit _contact;
     private CharacterController _charController;
     private float _vertSpeed;
-    private const float _normalSpeed = 15.0f;
+    private const float _normalSpeed = 6f;
 
     void Start()
     {
         _charController = GetComponent<CharacterController>();
         _vertSpeed = minFall;
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
     }
 
 

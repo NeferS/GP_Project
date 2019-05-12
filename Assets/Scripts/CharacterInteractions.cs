@@ -12,6 +12,8 @@ public class CharacterInteractions : MonoBehaviour
     void Update()
     {
         Ray ray = new Ray(transform.position, transform.forward);
+        Debug.DrawRay(transform.position, transform.forward*5f, Color.green);
+
         RaycastHit hit;
         GameObject hitObject = null;
         if (Physics.SphereCast(ray, 1.5f, out hit))
@@ -27,8 +29,10 @@ public class CharacterInteractions : MonoBehaviour
                 else if (hit.distance > distanceFromInteractable) { hitObject.GetComponent<Interactable>().Activate(false); }
             }
         }
+        
         if (Input.GetKeyDown(KeyCode.E) && hitObject != null && hit.distance <= distanceFromInteractable)
         {
+            Debug.Log("si");
             hitObject.GetComponent<Interactable>().RealizeInteraction(gameObject);
         }
     }

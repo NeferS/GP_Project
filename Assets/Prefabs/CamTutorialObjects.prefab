@@ -693,7 +693,7 @@ Transform:
   m_GameObject: {fileID: 4625369802542047894}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 12.5}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2269544802540927976}
   - {fileID: 8930959420081964590}
@@ -1397,11 +1397,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2190255325738710594}
     m_Modifications:
-    - target: {fileID: 8678745714427124407, guid: bd168d5fd167c1c458c0de13da9ed862,
-        type: 3}
-      propertyPath: m_Name
-      value: BlueConeParticleSystem
-      objectReference: {fileID: 0}
     - target: {fileID: 4400740411625051702, guid: bd168d5fd167c1c458c0de13da9ed862,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1457,15 +1452,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 3990348082256391205, guid: bd168d5fd167c1c458c0de13da9ed862,
+    - target: {fileID: 8678745714427124407, guid: bd168d5fd167c1c458c0de13da9ed862,
         type: 3}
-      propertyPath: m_Center.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3990348082256391205, guid: bd168d5fd167c1c458c0de13da9ed862,
-        type: 3}
-      propertyPath: m_Center.y
-      value: 0
+      propertyPath: m_Name
+      value: BlueConeParticleSystem
       objectReference: {fileID: 0}
     - target: {fileID: 7865755466242952342, guid: bd168d5fd167c1c458c0de13da9ed862,
         type: 3}
@@ -1482,6 +1472,16 @@ PrefabInstance:
       propertyPath: ShapeModule.radius.value
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3990348082256391205, guid: bd168d5fd167c1c458c0de13da9ed862,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3990348082256391205, guid: bd168d5fd167c1c458c0de13da9ed862,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd168d5fd167c1c458c0de13da9ed862, type: 3}
 --- !u!4 &1128117577026717335 stripped
@@ -1497,11 +1497,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4625369802542047889}
     m_Modifications:
-    - target: {fileID: 918098235748545144, guid: fb2572efe810b2d46bae7c1a7868d240,
-        type: 3}
-      propertyPath: m_Name
-      value: CamSwitch
-      objectReference: {fileID: 0}
     - target: {fileID: 914028937569276268, guid: fb2572efe810b2d46bae7c1a7868d240,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1572,16 +1567,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.5
       objectReference: {fileID: 0}
-    - target: {fileID: 6779676580045246943, guid: fb2572efe810b2d46bae7c1a7868d240,
+    - target: {fileID: 918098235748545144, guid: fb2572efe810b2d46bae7c1a7868d240,
         type: 3}
-      propertyPath: interactionType
-      value: 1
+      propertyPath: m_Name
+      value: CamSwitch
       objectReference: {fileID: 0}
-    - target: {fileID: 6779676580045246943, guid: fb2572efe810b2d46bae7c1a7868d240,
-        type: 3}
-      propertyPath: interactiveObject
-      value: 
-      objectReference: {fileID: 1970911200574445773}
     - target: {fileID: 7504446248213933273, guid: fb2572efe810b2d46bae7c1a7868d240,
         type: 3}
       propertyPath: interactiveObject
@@ -1592,6 +1582,16 @@ PrefabInstance:
       propertyPath: interactionType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6779676580045246943, guid: fb2572efe810b2d46bae7c1a7868d240,
+        type: 3}
+      propertyPath: interactionType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6779676580045246943, guid: fb2572efe810b2d46bae7c1a7868d240,
+        type: 3}
+      propertyPath: interactiveObject
+      value: 
+      objectReference: {fileID: 1970911200574445773}
     m_RemovedComponents:
     - {fileID: 7504446248213933273, guid: fb2572efe810b2d46bae7c1a7868d240, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: fb2572efe810b2d46bae7c1a7868d240, type: 3}
