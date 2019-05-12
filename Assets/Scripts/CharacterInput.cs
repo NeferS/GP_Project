@@ -2,93 +2,130 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/*MUST BE MERGED WITH THE NEW MOVEMENT SCRIPT*/
 [RequireComponent(typeof(CharacterController))]
-[RequireComponent(typeof(Rigidbody))]
+
 public class CharacterInput : MonoBehaviour
 {
-    public float speed;
-    public float jumpSpeed = 8.0f;
-    public float horizontalSpeed = 1.5f;
-    public float gravity = -20f;
+    [SerializeField] private Transform target;
+    Animator animator;
+    public float rotSpeed = 15.0f;
+    public float moveSpeed = 15.0f;
+    public float jumpSpeed = 20.0f;
+    public float gravity = -9.8f;
+    public float terminalVelocity = -10.0f;
+    public float minFall = -10f;
 
     public bool movementEnabled = true;
     public bool rotationEnabled = true;
     public bool jumpEnabled = true;
     public bool crouchEnabled = true;
 
-    private const float distanceFromInteractable = 1.0f;
-    private float _normalSpeed = 6.0f;
-
-    private Vector3 movement = Vector3.zero;
+    private ControllerColliderHit _contact;
     private CharacterController _charController;
+    private float _vertSpeed;
+    private const float _normalSpeed = 15.0f;
 
     void Start()
     {
         _charController = GetComponent<CharacterController>();
-        speed = _normalSpeed;
+        _vertSpeed = minFall;
+        animator = GetComponent<Animator>();
     }
 
 
     void Update()
     {
-        if (movementEnabled)
+        if(movementEnabled)
         {
-            if(_charController.isGrounded)
-            {
-                /*Normal movement section*/
-                float deltaZ = Input.GetAxis("Vertical") * speed;
-                movement = new Vector3(0, 0, deltaZ);
-                movement = transform.TransformDirection(movement);
+            Vector3 movement = Vector3.zero;
+            float horInput = Input.GetAxis("Horizontal");
+            float vertInput = Input.GetAxis("Vertical");
 
+            if (horInput != 0 || vertInput != 0)
+            {
                 if (rotationEnabled)
-                {
-                    float deltaX = Input.GetAxis("Horizontal") * horizontalSpeed;
-                    float rotationY = transform.localEulerAngles.y + deltaX;
-                    transform.localEulerAngles = new Vector3(0, rotationY, 0);
-                }
-
-                /*Jump section*/
-                if (Input.GetKeyDown(KeyCode.Space) && jumpEnabled)
-                {
-                    movement.y += jumpSpeed;
-                }
+                    movement.x = horInput * moveSpeed;
+                movement.z = vertInput * moveSpeed;
+                movement = Vector3.ClampMagnitude(movement, moveSpeed);
+                Quaternion tmp = target.rotation;
+                target.eulerAngles = new Vector3(0, target.eulerAngles.y, 0);
+                movement = target.TransformDirection(movement);
+                target.rotation = tmp;
+                Quaternion direction = Quaternion.LookRotation(movement);
+                transform.rotation = Quaternion.Lerp(transform.rotation, direction, rotSpeed * Time.deltaTime);
             }
 
-            movement.y += gravity * Time.deltaTime;
-            _charController.Move(movement * Time.deltaTime);
+            if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+                animator.SetBool("Back", true);
+            else
+                //if (Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
+                animator.SetBool("Back", false);
 
-            /*MISSING: Crouch section*/
 
-            /*Interaction with scene element section*/
-            Ray ray = new Ray(transform.position, transform.forward);
+
+            //animator.SetFloat("Speed", vertInput);
+            bool hitGround = false;
             RaycastHit hit;
-            GameObject hitObject = null;
-            if (Physics.SphereCast(ray, 0.75f, out hit))
+
+            if (_vertSpeed < 0 && Physics.Raycast(transform.position, Vector3.down, out hit))
             {
-                hitObject = hit.transform.gameObject;
-                Interactable interactable = hitObject.GetComponent<Interactable>();
-                if (interactable != null && interactable.enabled)
+                float check = (_charController.height + _charController.radius) / 1.9f;
+                hitGround = hit.distance <= check;
+            }
+            if (hitGround)
+            {
+                if (Input.GetButtonDown("Jump"))
                 {
-                    if (hit.distance <= distanceFromInteractable && !interactable.isInteracting())
+                    if(jumpEnabled)
                     {
-                        hitObject.GetComponent<Interactable>().Activate(true);
+                        animator.SetBool("Jump", true);
+                        _vertSpeed = jumpSpeed;
                     }
-                    else if(hit.distance > distanceFromInteractable) { hitObject.GetComponent<Interactable>().Activate(false); }
+                }
+                else
+                {
+                    animator.SetBool("Jump", false);
+                    _vertSpeed = minFall;
                 }
             }
-            if (Input.GetKeyDown(KeyCode.E) && hitObject != null && hit.distance <= distanceFromInteractable)
+            else
             {
-                hitObject.GetComponent<Interactable>().RealizeInteraction(gameObject);
+                _vertSpeed += gravity * 5 * Time.deltaTime;
+                if (_vertSpeed < terminalVelocity)
+                {
+                    _vertSpeed = terminalVelocity;
+                }
+
+                if (_charController.isGrounded)
+                {
+                    if (Vector3.Dot(movement, _contact.normal) < 0)
+                    {
+                        movement = _contact.normal * moveSpeed;
+                    }
+                    else
+                    {
+                        movement += _contact.normal * moveSpeed;
+                    }
+                }
             }
+
+            movement.y = _vertSpeed;
+
+            movement *= Time.deltaTime;
+            _charController.Move(movement);
         }
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        _contact = hit;
     }
 
     public void EnableMovement(bool enabled) { movementEnabled = enabled; }
     public void EnableRotation(bool enabled) { rotationEnabled = enabled; }
     public void EnableJump(bool enabled) { jumpEnabled = enabled; }
     public void EnableCrouch(bool enabled) { crouchEnabled = enabled; }
-    public void SetSpeed(float newSpeed) { speed = newSpeed; }
+    public void SetSpeed(float newSpeed) { moveSpeed = newSpeed; }
     public float normalSpeed
     {
         get { return _normalSpeed; }

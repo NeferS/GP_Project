@@ -6,8 +6,7 @@ public class PositionAdjust : SimpleTransformer
     public Transform player;
     public Transform cameraPivot;
     public Transform cameraTarget;
-
-    //public Vector3 playerStartPosition;
+    
     private Quaternion playerStartRotation;
     private Vector3 cameraDefaultPosition;
     private Vector3 cameraDefaultRotation;
@@ -22,7 +21,6 @@ public class PositionAdjust : SimpleTransformer
         {
             cameraDefaultPosition = cameraPivot.localPosition;
             cameraDefaultRotation = cameraPivot.localEulerAngles;
-            //playerStartPosition = player.position;
             playerStartRotation = player.rotation;
             cameraRigStartRotation = cameraPivot.parent.localEulerAngles;
         }
@@ -34,9 +32,6 @@ public class PositionAdjust : SimpleTransformer
         var curvePosition = accelCurve.Evaluate(position);
         if (isCameraLocked)
         {
-            //posizione player
-            //var playerPos =Vector3.Lerp(playerStartPosition, transform.position, curvePosition);
-            //player.GetComponent<CharacterController>().Move(playerPos-player.position);
 
             //rotazione player
             player.rotation = Quaternion.Lerp(playerStartRotation, transform.rotation, curvePosition);

@@ -11,7 +11,7 @@ public class TutorialPerspactiveInteractionManager : GameCommandHandler
     public GameCommandReceiver[] interactables;
 
     public float moveCharacterTime = 3f,
-                 perspectiveSwitchTime = 1f,
+                 perspectiveSwitchTime = 2f,
                  cameraResetTime = 1.5f,
                  interactionTime = 5f;
 
@@ -27,7 +27,7 @@ public class TutorialPerspactiveInteractionManager : GameCommandHandler
         characterInput.enabled = false;
 
         // disattiva gli script della camera che interferirebbero con PositionAdjust
-        CameraLook mouseLook = characterInput.GetComponentInChildren<CameraLook>();
+        /*CameraLook mouseLook = characterInput.GetComponentInChildren<CameraLook>();
         ProtectCameraFromWallClip protectCameraFromWallClip = characterInput.GetComponentInChildren<ProtectCameraFromWallClip>();
         if (mouseLook)
         {
@@ -36,7 +36,8 @@ public class TutorialPerspactiveInteractionManager : GameCommandHandler
         if (protectCameraFromWallClip)
         {
             protectCameraFromWallClip.enabled = false;
-        }
+        }*/
+        camera.GetComponentInParent<OrbitCamera>().enabled = false;
 
         //posiziona player e camera al giusto posto
         manager.Receive(GameCommandType.Start);
@@ -65,13 +66,14 @@ public class TutorialPerspactiveInteractionManager : GameCommandHandler
 
         //riattiva il CharacterController e gli script della camera
         characterInput.enabled = true;
-        if (mouseLook)
+        camera.GetComponentInParent<OrbitCamera>().enabled = true;
+        /*if (mouseLook)
         {
             mouseLook.enabled = true;
         }
         if (protectCameraFromWallClip)
         {
             protectCameraFromWallClip.enabled = true;
-        }
+        }*/
     }
 }

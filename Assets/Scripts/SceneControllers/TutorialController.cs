@@ -33,6 +33,7 @@ public class TutorialController : Controller
     [SerializeField] private Text _cameraTxt;
     [SerializeField] private Image _cameraPanelImg;
     [SerializeField] private GameObject _cameraCheckBox;
+    [SerializeField] private GameObject _mainCamera;
     private PerspectiveSwitcher _switcher;
 
     [SerializeField] private GameObject _player;
@@ -190,7 +191,7 @@ public class TutorialController : Controller
                     _player.transform.localPosition = new Vector3(0.0f, 1.5f, 0.0f);
                     _player.transform.rotation = new Quaternion(0.0f, 0.0f, 0.0f, 0.0f);
                     box = Instantiate(boxPrefab) as GameObject;
-                    box.transform.position = _player.transform.position + new Vector3(0.0f, -1.0f, 5.0f);
+                    box.transform.position = _player.transform.position + new Vector3(0.0f, -1.0f, 10.0f);
 
                     q = Q7;
                 }
@@ -268,7 +269,7 @@ public class TutorialController : Controller
                     _cameraCheckBox.GetComponent<Image>().enabled = true;
                     _cameraTxt.enabled = true;
                     
-                    _player.transform.localPosition = new Vector3(-10.5f, 1.5f, 19.0f);
+                    _player.transform.localPosition = new Vector3(-30f, 1.5f, 57.0f);
                     _player.transform.rotation = new Quaternion(0.0f, 0.0f, 0.0f, 0.0f);
                     Vector3 angles = _player.transform.localEulerAngles;
                     _player.transform.localEulerAngles = new Vector3(angles.x, 60.0f, angles.z);
@@ -276,20 +277,20 @@ public class TutorialController : Controller
                     Destroy(box);
                     box = null;
                     camTutorial = Instantiate(camTutorialPrefab) as GameObject;
-                    camTutorial.transform.position = new Vector3(0, 0, 12f);
+                    camTutorial.transform.position = new Vector3(0, 0, 32.5f);
 
                     TutorialPerspactiveInteractionManager pim = camTutorial.GetComponentInChildren<TutorialPerspactiveInteractionManager>();
                     pim.characterInput = _player.GetComponent<CharacterInput>();
-                    pim.camera = _player.GetComponentInChildren<GameCommandReceiver>();
+                    pim.camera = _mainCamera.GetComponentInChildren<GameCommandReceiver>();
 
                     PositionAdjust pa = camTutorial.GetComponentInChildren<PositionAdjust>();
                     pa.player = _player.transform;
-                    pa.cameraPivot = _player.GetComponentInChildren<CameraLook>().transform;
+                    pa.cameraPivot = _mainCamera.GetComponentInChildren<CameraPivot>().transform;
                     
                     camTutorial.GetComponentInChildren<ParticleSystem>().gameObject.AddComponent<OnTriggerWarning>();
                     camTutorial.GetComponentInChildren<OnTriggerWarning>().controller = this;
 
-                    _switcher = _player.GetComponentInChildren<PerspectiveSwitcher>();
+                    _switcher = _mainCamera.GetComponentInChildren<PerspectiveSwitcher>();
 
                     q = Q11;
                 }

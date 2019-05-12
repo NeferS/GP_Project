@@ -12,17 +12,16 @@ public class PullableObject : Interactable
     /*If 'true' the object has been connected to another GameObject body*/
     private bool connected;
     /*The speed of the other body while pushing or pulling this object*/
-    private const float weightedSpeed = 2.0f;
+    private const float weightedSpeed = 5.0f;
 
     void Start()
     {
         base.Init();
         _rigidbody = GetComponent<Rigidbody>();
         //sets the right values of this Rigibody in order to perform a correct interaction
-        _rigidbody.useGravity = false;
         _rigidbody.isKinematic = false;
         //must be enabled if the desired result is a falling object
-        _rigidbody.constraints = RigidbodyConstraints.FreezePositionY;
+        _rigidbody.constraints = RigidbodyConstraints.FreezePosition;
         _rigidbody.freezeRotation = true;
         connected = false;
     }
@@ -41,11 +40,13 @@ public class PullableObject : Interactable
     private void Connect(GameObject with)
     {
         connected = true;
+        _rigidbody.constraints = RigidbodyConstraints.FreezePositionY;
         FixedJoint fj = gameObject.AddComponent<FixedJoint>();
         fj.connectedBody = with.GetComponent<Rigidbody>();
         CharacterInput character = with.GetComponent<CharacterInput>();
         character.EnableRotation(false);
         character.EnableJump(false);
+        character.EnableCrouch(false);
         character.SetSpeed(weightedSpeed);
     }
 
@@ -54,10 +55,12 @@ public class PullableObject : Interactable
     private void BreakConnection(GameObject with)
     {
         connected = false;
+        _rigidbody.constraints = RigidbodyConstraints.FreezePosition;
         Destroy(GetComponent<FixedJoint>());
         CharacterInput character = with.GetComponent<CharacterInput>();
-        character.EnableJump(true);
         character.EnableRotation(true);
+        character.EnableJump(true);
+        character.EnableCrouch(true);
         character.SetSpeed(character.normalSpeed);
     }
 }

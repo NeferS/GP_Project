@@ -20,6 +20,7 @@ public abstract class Interactable : MonoBehaviour
     protected void Init() { _interactIcon.SetActive(false); }
     /*Activates the interaction icon*/
     public void Activate(bool activate) { _interactIcon.SetActive(activate); }
+
     /*Sets the 'interacted' value and activates (or deactivates) the interaction action using the
      *'!interact' value*/
     protected void Interact(bool interact)
@@ -27,9 +28,11 @@ public abstract class Interactable : MonoBehaviour
         interacted = interact;
         _interactIcon.SetActive(!interact);
     }
+
     /*Returns 'true' if the object is interacting or has interacted (which means the variable
      *'interacted' is true, 'false' otherwise*/
     public bool isInteracting() { return interacted; }
+
     /*Abstract method that the subclasses must implement to perform the interaction*/
     public abstract void RealizeInteraction(GameObject obj);
 
