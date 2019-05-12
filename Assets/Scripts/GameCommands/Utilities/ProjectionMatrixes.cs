@@ -11,7 +11,7 @@ public class ProjectionMatrixes : MonoBehaviour
     public float near = .3f,
                  fov = 50f,
                  far = 1000f,
-                 orthographicSize = 40f;
+                 orthographicSize = 10f;
 
     private float aspect;
     private float previusAspect;

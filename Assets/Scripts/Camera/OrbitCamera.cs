@@ -5,6 +5,7 @@ using UnityEngine;
 public class OrbitCamera : MonoBehaviour
 {
     [SerializeField] private Transform target;
+    [SerializeField] private float distance;
     public float rotSpeed = 1.5f;
     private float _rotY;
     private float _rotX;
@@ -17,7 +18,7 @@ public class OrbitCamera : MonoBehaviour
     {
         _rotY = transform.eulerAngles.y;
         _rotX = transform.eulerAngles.x;
-        _offset = target.position - transform.position;
+        _offset = (target.position - transform.position).normalized*distance;
     }
 
 

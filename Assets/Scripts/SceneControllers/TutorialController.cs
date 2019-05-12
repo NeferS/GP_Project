@@ -269,7 +269,7 @@ public class TutorialController : Controller
                     _cameraCheckBox.GetComponent<Image>().enabled = true;
                     _cameraTxt.enabled = true;
                     
-                    _player.transform.localPosition = new Vector3(-30f, 1.5f, 57.0f);
+                    _player.transform.localPosition = new Vector3(-10f, 1.5f, 19.0f);
                     _player.transform.rotation = new Quaternion(0.0f, 0.0f, 0.0f, 0.0f);
                     Vector3 angles = _player.transform.localEulerAngles;
                     _player.transform.localEulerAngles = new Vector3(angles.x, 60.0f, angles.z);
@@ -277,7 +277,7 @@ public class TutorialController : Controller
                     Destroy(box);
                     box = null;
                     camTutorial = Instantiate(camTutorialPrefab) as GameObject;
-                    camTutorial.transform.position = new Vector3(0, 0, 32.5f);
+                    camTutorial.transform.position = new Vector3(0, 0, 12.5f);
 
                     TutorialPerspactiveInteractionManager pim = camTutorial.GetComponentInChildren<TutorialPerspactiveInteractionManager>();
                     pim.characterInput = _player.GetComponent<CharacterInput>();

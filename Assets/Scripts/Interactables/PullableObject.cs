@@ -12,7 +12,7 @@ public class PullableObject : Interactable
     /*If 'true' the object has been connected to another GameObject body*/
     private bool connected;
     /*The speed of the other body while pushing or pulling this object*/
-    private const float weightedSpeed = 5.0f;
+    private const float weightedSpeed = 2.0f;
 
     void Start()
     {
