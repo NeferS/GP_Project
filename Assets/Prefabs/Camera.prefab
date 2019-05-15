@@ -187,7 +187,7 @@ MonoBehaviour:
   target: {fileID: 0}
   distance: 8
   rotSpeed: 1.5
-  minVert: -45
+  minVert: -30
   maxVert: 45
 --- !u!1 &8225540187446759915
 GameObject:

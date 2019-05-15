@@ -11,6 +11,7 @@ public class PullableObject : Interactable
     private Rigidbody _rigidbody;
     /*If 'true' the object has been connected to another GameObject body*/
     private bool connected;
+    private GameObject with;
     /*The speed of the other body while pushing or pulling this object*/
     private const float weightedSpeed = 2.0f;
 
@@ -21,9 +22,19 @@ public class PullableObject : Interactable
         //sets the right values of this Rigibody in order to perform a correct interaction
         _rigidbody.isKinematic = false;
         //must be enabled if the desired result is a falling object
-        _rigidbody.constraints = RigidbodyConstraints.FreezePosition;
-        _rigidbody.freezeRotation = true;
+        _rigidbody.constraints = RigidbodyConstraints.FreezeAll;
         connected = false;
+    }
+
+    void Update()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, Vector3.down, out hit) && hit.distance > 0.5f)
+        {
+            if (connected)
+                BreakConnection(with);
+            _rigidbody.constraints = RigidbodyConstraints.None;
+        }
     }
 
     /*Performs the interaction using the 'connected' variable value: if it's 'true' invokes the 'BreakConnection' method,
@@ -42,6 +53,7 @@ public class PullableObject : Interactable
         connected = true;
         _rigidbody.constraints = RigidbodyConstraints.FreezePositionY;
         FixedJoint fj = gameObject.AddComponent<FixedJoint>();
+        this.with = with;
         fj.connectedBody = with.GetComponent<Rigidbody>();
         CharacterInput character = with.GetComponent<CharacterInput>();
         character.EnableRotation(false);
@@ -55,7 +67,8 @@ public class PullableObject : Interactable
     private void BreakConnection(GameObject with)
     {
         connected = false;
-        _rigidbody.constraints = RigidbodyConstraints.FreezePosition;
+        _rigidbody.constraints = RigidbodyConstraints.FreezeAll;
+        this.with = null;
         Destroy(GetComponent<FixedJoint>());
         CharacterInput character = with.GetComponent<CharacterInput>();
         character.EnableRotation(true);

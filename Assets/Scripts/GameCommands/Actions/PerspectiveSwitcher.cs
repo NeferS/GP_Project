@@ -7,7 +7,6 @@ using UnityEngine;
 public class PerspectiveSwitcher : GameCommandHandler
 {
     private ProjectionMatrixes matrixes;
-    public Matrix4x4 start, end;
     public float duration = 1;
     public AnimationCurve accelCurve;
     public AudioSource onStartAudio;
@@ -25,16 +24,6 @@ public class PerspectiveSwitcher : GameCommandHandler
     private void Start()
     {
         matrixes = GetComponent<ProjectionMatrixes>();
-        if (!toOrtho)
-        {
-            start = matrixes.ortho;
-            end = matrixes.perspective;
-        }
-        else
-        {
-            start = matrixes.perspective;
-            end = matrixes.ortho;
-        }
     }
 
     /*Performs the interaction (the switch) with respect to the received GameCommandType*/
@@ -58,17 +47,23 @@ public class PerspectiveSwitcher : GameCommandHandler
     {
         var curvePosition = accelCurve.Evaluate(position);
         Matrix4x4 matrixPos = new Matrix4x4();
-        for (int i = 0; i < 16; i++)
-            matrixPos[i] = Mathf.Lerp(start[i], end[i], curvePosition);
+        if(toOrtho)
+        {
+            for (int i = 0; i < 16; i++)
+                matrixPos[i] = Mathf.Lerp(matrixes.perspective[i], matrixes.ortho[i], curvePosition);
+        }
+        else
+        {
+            for (int i = 0; i < 16; i++)
+                matrixPos[i] = Mathf.Lerp(matrixes.ortho[i], matrixes.perspective[i], curvePosition);
+        }
+        
         camera.projectionMatrix = matrixPos;
     }
 
     /*Simply exchanges the pointers of the start and end matrices*/
     private void InvertMatrixes()
     {
-        var tmp = start;
-        start = end;
-        end = tmp;
         toOrtho = !toOrtho;
     }
 
