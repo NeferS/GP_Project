@@ -284,7 +284,6 @@ public class TutorialController : Controller
                     pim.camera = _mainCamera.GetComponentInChildren<GameCommandReceiver>();
 
                     PositionAdjust pa = camTutorial.GetComponentInChildren<PositionAdjust>();
-                    pa.player = _player.transform;
                     pa.cameraPivot = _mainCamera.GetComponentInChildren<CameraPivot>().transform;
                     
                     camTutorial.GetComponentInChildren<ParticleSystem>().gameObject.AddComponent<OnTriggerWarning>();

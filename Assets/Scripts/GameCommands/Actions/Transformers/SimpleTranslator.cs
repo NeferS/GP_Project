@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-//TODO: comments
+/*Applies a transform to a target object, changing its start position to a target position*/
 public class SimpleTranslator : SimpleTransformer
 {
     public new Rigidbody rigidbody;

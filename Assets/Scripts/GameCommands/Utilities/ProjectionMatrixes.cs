@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//TODO: comments
+/*This script pre-calculates the two matrices (perspective and orthographic) that has to be applied to the camera when a
+ *camera interaction occurs.*/
 public class ProjectionMatrixes : MonoBehaviour
 
 {
@@ -28,6 +29,7 @@ public class ProjectionMatrixes : MonoBehaviour
         camera.projectionMatrix = perspective;
     }
 
+    /*If the screen dimension (aspect) changes, new matrices are calculated with respect to the new aspect.*/
     private void FixedUpdate()
     {
         aspect = (float)Screen.width / (float)Screen.height;

@@ -28,6 +28,8 @@ public class PullableObject : Interactable
 
     void Update()
     {
+        /*If the object realizes that there isn't any other object under itself, it breaks the connection (if it exists)
+         *and starts to fall*/
         RaycastHit hit;
         if (Physics.Raycast(transform.position, Vector3.down, out hit) && hit.distance > 0.5f)
         {

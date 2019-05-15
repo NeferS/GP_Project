@@ -1,6 +1,6 @@
 using UnityEngine;
 
-//TODO: comments
+/*IMPORTED FROM THE '3DGamekit' FREE ASSETS IN THE UNITY STORE.*/
 public abstract class SimpleTransformer : GameCommandHandler
 {
     public enum LoopType

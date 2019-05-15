@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//TODO: comments and adjustment after Marco's work
+/*This script simply sends the right commands to the objects that interact when a camera interaction occurs.*/
 public class TutorialPerspactiveInteractionManager : GameCommandHandler
 {
     public CharacterInput characterInput;
@@ -23,57 +23,39 @@ public class TutorialPerspactiveInteractionManager : GameCommandHandler
     private IEnumerator Interaction(GameCommandType type)
     {
 
-        // disattiva il CharacterController
+        /*disables the character input script*/
         characterInput.enabled = false;
 
-        // disattiva gli script della camera che interferirebbero con PositionAdjust
-        /*CameraLook mouseLook = characterInput.GetComponentInChildren<CameraLook>();
-        ProtectCameraFromWallClip protectCameraFromWallClip = characterInput.GetComponentInChildren<ProtectCameraFromWallClip>();
-        if (mouseLook)
-        {
-            mouseLook.enabled = false;
-        }
-        if (protectCameraFromWallClip)
-        {
-            protectCameraFromWallClip.enabled = false;
-        }*/
+        /*disables the script in the camera that interferes with the 'PositionAdjust' script*/
         camera.GetComponentInParent<OrbitCamera>().enabled = false;
 
-        //posiziona player e camera al giusto posto
+        /*moves the character and the camera to the right places*/
         manager.Receive(GameCommandType.Start);
         yield return new WaitForSeconds(moveCharacterTime);
 
-        //cambia la proiezione della camera
+        /*changes the camera projection*/
         camera.Receive(GameCommandType.Activate);
         yield return new WaitForSeconds(perspectiveSwitchTime);
 
-        //attiva i vari interactables
+        /*enables all the interactables objects in 'interactables'*/
         foreach (GameCommandReceiver receiver in interactables)
             receiver.Receive(GameCommandType.Activate);
         yield return new WaitForSeconds(interactionTime);
         
-        //inverte le matrici della camera
+        /*switches the matrices of the camera*/
         camera.Receive(GameCommandType.Reset);
         yield return new WaitForSeconds(cameraResetTime);
 
-        //resetta la proiezione della camera
+        /*resets the camera projection*/
         camera.Receive(GameCommandType.Deactivate);
         yield return new WaitForSeconds(perspectiveSwitchTime);
 
-        //riposiziona la camera
+        /*places the camera to its original position*/
         manager.Receive(GameCommandType.Start);
         yield return new WaitForSeconds(moveCharacterTime);
 
-        //riattiva il CharacterController e gli script della camera
+        /*enables the character input script and the script in the camera*/
         characterInput.enabled = true;
         camera.GetComponentInParent<OrbitCamera>().enabled = true;
-        /*if (mouseLook)
-        {
-            mouseLook.enabled = true;
-        }
-        if (protectCameraFromWallClip)
-        {
-            protectCameraFromWallClip.enabled = true;
-        }*/
     }
 }

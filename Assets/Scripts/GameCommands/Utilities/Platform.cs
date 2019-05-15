@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//TODO: comments
+/*This scripts is used from a platform when the player is standing on it. Basically, it moves the player as the platform.*/
 public class Platform : MonoBehaviour
 {
     [SerializeField]
