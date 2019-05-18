@@ -8,16 +8,22 @@ using UnityEngine;
 public class CameraSwitchObject : Interactable
 {
     public bool isOneShot = true;
+    private Animator animator;
 
     void Start()
     {
         base.Init();
+        animator = GetComponent<Animator>();
+        if (animator)
+            animator.SetBool("OneShot", isOneShot);
     }
 
     /*When the interaction is triggered, this implementation just uses the GameCommand system. If this interaction can
      *be performed just once, the script is disabled*/
     public override void RealizeInteraction(GameObject obj)
     {
+        if (animator)
+            animator.SetBool("Activate", true);
         GetComponent<SendGameCommand>().Send();
         Interact(true);
         if(isOneShot)

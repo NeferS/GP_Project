@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/*This class is a subclass of Controller. It is a finite state machine that manages the all the events that occur in the tutorial scene.*/
 public class TutorialController : Controller
 {
     /*Intro Section*/
@@ -40,10 +41,14 @@ public class TutorialController : Controller
     [SerializeField] private Sprite _emptyCheckBox;
     [SerializeField] private Sprite _fullCheckBox;
 
+    /*The current state 'q'*/
     private int q;
+    /*Value used to gradually fade in or out an object inside the canvas*/
     private const float alphaVariationPerStep = 0.007f;
+    /*The possible states of this machine*/
     private const int Q0 = 0, Q1 = 1, Q2 = 2, Q3 = 3, Q4 = 4, Q5 = 5, Q6 = 6, Q7 = 7, Q8 = 8,
                       Q9 = 9, Q10 = 10, Q11 = 11, Q12 = 12, Q13 = 13, Q14 = 14;
+    /*Simple map between the keys pressed and the positions in an array*/
     private const int W = 0, A = 1, S = 2, D = 3, SPACE = 4, C = 5, E = 6, V = 7;
 
     private bool[] keysPressed = { false, false, false, false, false, false, false, false };
@@ -69,6 +74,8 @@ public class TutorialController : Controller
     {
         switch(q)
         {
+            /*When the machine is in the states Q0 and Q1, it simply shows a text on the canvas. In the state Q2, the last text
+             *fades out and the tips relative to the 'WASD' movement are shown.*/
             case Q0:
                 if (_t0.color.a <= 1)
                 {
@@ -109,6 +116,8 @@ public class TutorialController : Controller
                     _player.GetComponent<CharacterInput>().EnableMovement(true);
                 }
                 break;
+            /*In the state Q3, the machine waits until the player presses each of the 'WASD' keys, and then fades out the tips
+             *switching the current state into Q4.*/
             case Q3:
                 if(Input.GetKeyDown(KeyCode.W)) { keysPressed[W] = true; }
                 if(Input.GetKeyDown(KeyCode.A)) { keysPressed[A] = true; }
@@ -120,6 +129,7 @@ public class TutorialController : Controller
                     q = Q4;
                 }
                 break;
+            /*Fades out the 'WASD' tips and shows the tips relative to the 'Jump' and 'Crouch' keys.*/
             case Q4:
                 if(_wasdTxt.color.a > 0)
                 {
@@ -151,6 +161,7 @@ public class TutorialController : Controller
                     _player.GetComponent<CharacterInput>().EnableJump(true);
                 }
                 break;
+            /*If the player jumps and crouches, than the current state switches to Q6 to fade out the tips.*/
             case Q5:
                 if (Input.GetKeyDown(KeyCode.Space)) { keysPressed[SPACE] = true; }
                 if (Input.GetKeyDown(KeyCode.C) && _player.GetComponent<CharacterController>().isGrounded) { keysPressed[C] = true; }
@@ -176,6 +187,8 @@ public class TutorialController : Controller
                     _jcImg.color = new Color(_jcImg.color.r, _jcImg.color.g, _jcImg.color.b,
                                              _jcImg.color.a - alphaVariationPerStep * 2);
                 }
+                /*Once the tips have been faded out, the machine shows new tips about the interactable objects and instantiate
+                 *into the scene a box that can be pulled and pushed.*/
                 else
                 {
                     _jcPanelImg.enabled = false;
@@ -196,6 +209,8 @@ public class TutorialController : Controller
                     q = Q7;
                 }
                 break;
+            /*From the state Q7 to the state Q9, the machine waits for the player who has to interact with the box and shows
+             *him the tips to make it properly.*/
             case Q7:
                 if(Input.GetKeyDown(KeyCode.E) && box.GetComponent<FixedJoint>() != null) { keysPressed[E] = true; }
                 if(keysPressed[E])
@@ -258,6 +273,9 @@ public class TutorialController : Controller
                     _interactImg.color = new Color(_interactImg.color.r, _interactImg.color.g, _interactImg.color.b,
                                                    _interactImg.color.a - alphaVariationPerStep * 2);
                 }
+                /*In the second part of the state Q10, the machine instantiates the prefab relative to the camera switch
+                 *tutorial, moves each object to the right place (including the character) and sets some fundamental parameters
+                 *into the new object.*/
                 else
                 {
                     _interactPanelImg.enabled = false;
@@ -294,6 +312,8 @@ public class TutorialController : Controller
                     q = Q11;
                 }
                 break;
+            /*In the state Q11 the machine waits until the player interacts with the object, than switches to the state
+             *Q12 where it fades out the tips relative to the camera interaction.*/
             case Q11:
                 if (_switcher.onStartAudio.isPlaying)
                 {
@@ -320,6 +340,8 @@ public class TutorialController : Controller
                     q = Q13;
                 }
                 break;
+            /*When the character enters into the final trigger, in the state Q13 the machine communicates to the player that the 
+             *tutorial is finished.*/
             case Q13:
                 if (exitTriggered)
                 {
@@ -336,6 +358,7 @@ public class TutorialController : Controller
                     q = Q14;
                 }
                 break;
+            /*Finally, the SceneLoader loads the main menu scene.*/
             case Q14:
                 if (Input.GetKeyDown(KeyCode.X))
                 {
@@ -347,7 +370,8 @@ public class TutorialController : Controller
         }
     }
 
-    private void SetFull(GameObject obj)
+    /*Changes the sprite of the check box, filling it with a mark*/
+    protected void SetFull(GameObject obj)
     {
         RectTransform cbRect = obj.GetComponent<RectTransform>();
         obj.GetComponent<RectTransform>().sizeDelta = new Vector2(90, cbRect.sizeDelta.y);
@@ -356,5 +380,7 @@ public class TutorialController : Controller
         obj.GetComponent<Image>().sprite = _fullCheckBox;
     }
 
+    /*Sets the value boolean variable 'exitTriggered' to true. Used to catch the event that represents the end of the
+     *tutorial.*/
     public override void ExitTriggered() { exitTriggered = true; }
 }
