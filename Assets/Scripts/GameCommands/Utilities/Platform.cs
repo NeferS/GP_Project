@@ -5,10 +5,9 @@ using UnityEngine;
 /*This scripts is used from a platform when the player is standing on it. Basically, it moves the player as the platform.*/
 public class Platform : MonoBehaviour
 {
-    [SerializeField]
     protected CharacterController m_CharacterController;
 
-    void OnTriggerStay(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         CharacterController character = other.GetComponent<CharacterController>();
 
