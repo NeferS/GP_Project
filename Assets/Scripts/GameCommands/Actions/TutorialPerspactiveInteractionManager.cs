@@ -27,7 +27,7 @@ public class TutorialPerspactiveInteractionManager : GameCommandHandler
         characterInput.enabled = false;
 
         /*disables the script in the camera that interferes with the 'PositionAdjust' script*/
-        camera.GetComponentInParent<OrbitCamera>().enabled = false;
+        camera.GetComponentInParent<CameraController>().enabled = false;
 
         /*moves the character and the camera to the right places*/
         manager.Receive(GameCommandType.Start);
@@ -56,6 +56,6 @@ public class TutorialPerspactiveInteractionManager : GameCommandHandler
 
         /*enables the character input script and the script in the camera*/
         characterInput.enabled = true;
-        camera.GetComponentInParent<OrbitCamera>().enabled = true;
+        camera.GetComponentInParent<CameraController>().enabled = true;
     }
 }

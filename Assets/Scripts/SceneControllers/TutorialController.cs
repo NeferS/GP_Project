@@ -62,6 +62,7 @@ public class TutorialController : Controller
         _t1.color = new Color(_t1.color.r, _t1.color.g, _t1.color.b, 0);
         _player.GetComponent<CharacterInput>().EnableMovement(false);
         _player.GetComponent<CharacterInput>().EnableJump(false);
+        _player.GetComponent<CharacterInput>().EnableCrouch(false);
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -159,12 +160,13 @@ public class TutorialController : Controller
                     _jcImg.enabled = true;
                     q = Q5;
                     _player.GetComponent<CharacterInput>().EnableJump(true);
+                    _player.GetComponent<CharacterInput>().EnableCrouch(true);
                 }
                 break;
             /*If the player jumps and crouches, than the current state switches to Q6 to fade out the tips.*/
             case Q5:
                 if (Input.GetKeyDown(KeyCode.Space)) { keysPressed[SPACE] = true; }
-                if (Input.GetKeyDown(KeyCode.C) && _player.GetComponent<CharacterController>().isGrounded) { keysPressed[C] = true; }
+                if (Input.GetKeyDown(KeyCode.C)) { keysPressed[C] = true; }
                 if(keysPressed[SPACE] && keysPressed[C])
                 {
                     SetFull(_jcCheckBox);
@@ -302,7 +304,7 @@ public class TutorialController : Controller
                     pim.camera = _mainCamera.GetComponentInChildren<GameCommandReceiver>();
 
                     PositionAdjust pa = camTutorial.GetComponentInChildren<PositionAdjust>();
-                    pa.cameraPivot = _mainCamera.GetComponentInChildren<CameraPivot>().transform;
+                    pa.cameraPivot = _mainCamera.GetComponentInChildren<CameraController>().transform;
                     
                     camTutorial.GetComponentInChildren<ParticleSystem>().gameObject.AddComponent<OnTriggerWarning>();
                     camTutorial.GetComponentInChildren<OnTriggerWarning>().controller = this;

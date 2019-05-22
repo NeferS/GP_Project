@@ -12,8 +12,6 @@ public class PullableObject : Interactable
     /*If 'true' the object has been connected to another GameObject body*/
     private bool connected;
     private GameObject with;
-    /*The speed of the other body while pushing or pulling this object*/
-    private const float weightedSpeed = 2.0f;
 
     void Start()
     {
@@ -24,19 +22,6 @@ public class PullableObject : Interactable
         //must be enabled if the desired result is a falling object
         _rigidbody.constraints = RigidbodyConstraints.FreezeAll;
         connected = false;
-    }
-
-    void Update()
-    {
-        /*If the object realizes that there isn't any other object under itself, it breaks the connection (if it exists)
-         *and starts to fall*/
-        /*RaycastHit hit;
-        if (Physics.Raycast(transform.position, Vector3.down, out hit) && hit.distance > 0.5f)
-        {
-            if (connected)
-                BreakConnection(with);
-            _rigidbody.constraints = RigidbodyConstraints.None;
-        }*/
     }
 
     /*Performs the interaction using the 'connected' variable value: if it's 'true' invokes the 'BreakConnection' method,
@@ -58,10 +43,10 @@ public class PullableObject : Interactable
         this.with = with;
         fj.connectedBody = with.GetComponent<Rigidbody>();
         CharacterInput character = with.GetComponent<CharacterInput>();
-        character.EnableRotation(false);
         character.EnableJump(false);
         character.EnableCrouch(false);
-        character.SetSpeed(weightedSpeed);
+        character.SetConnected(true);
+        character.target.GetComponent<CameraController>().EnableRotation(false);
     }
 
     /*Destroys the FixedJoint between the two bodies and enables the rotation and the jump; it also resets the normal
@@ -73,9 +58,9 @@ public class PullableObject : Interactable
         this.with = null;
         Destroy(GetComponent<FixedJoint>());
         CharacterInput character = with.GetComponent<CharacterInput>();
-        character.EnableRotation(true);
         character.EnableJump(true);
         character.EnableCrouch(true);
-        character.SetSpeed(character.normalSpeed);
+        character.SetConnected(false);
+        character.target.GetComponent<CameraController>().EnableRotation(true);
     }
 }
