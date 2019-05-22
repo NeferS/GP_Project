@@ -2445,8 +2445,8 @@ GameObject:
   - component: {fileID: 1296017822}
   - component: {fileID: 1296017821}
   - component: {fileID: 1296017820}
-  m_Layer: 0
-  m_Name: Player 2
+  m_Layer: 14
+  m_Name: DefinitivePlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2533,7 +2533,6 @@ MonoBehaviour:
   terminalVelocity: -10
   minFall: -10
   movementEnabled: 1
-  rotationEnabled: 1
   jumpEnabled: 1
   crouchEnabled: 1
   connected: 0

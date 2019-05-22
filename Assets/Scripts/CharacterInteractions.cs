@@ -11,8 +11,8 @@ public class CharacterInteractions : MonoBehaviour
 
     void Update()
     {
-        Ray ray = new Ray(transform.position, transform.forward);
-        Debug.DrawRay(transform.position, transform.forward, Color.green);
+        Ray ray = new Ray(transform.position, GetComponentInChildren<Animator>().transform.forward);
+        //Debug.DrawRay(transform.position, GetComponentInChildren<Animator>().transform.forward, Color.green);
 
         RaycastHit hit;
         GameObject hitObject = null;
