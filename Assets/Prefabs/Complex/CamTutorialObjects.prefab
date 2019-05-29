@@ -944,7 +944,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf689cc047ef29c4d994a435190d6d22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionsType: 05000000
+  interactionsType: 03000000
   isOneShot: 0
   coolDown: 0
   startDelay: 0
@@ -979,7 +979,6 @@ MonoBehaviour:
   OnStopCommand: {fileID: 0}
   onStartAudio: {fileID: 0}
   onEndAudio: {fileID: 0}
-  player: {fileID: 0}
   cameraPivot: {fileID: 0}
   cameraTarget: {fileID: 2819417809592679117}
   isCameraLocked: 0

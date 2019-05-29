@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/*This class is a subclass of Interactable and defines the behaviour of the objects that interact with a Text component in a Canvas.*/
 public class TextInteraction : MonoBehaviour
 {
     [SerializeField] private string text;

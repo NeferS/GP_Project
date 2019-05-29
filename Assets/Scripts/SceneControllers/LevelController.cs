@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*This class is a subclass of Controller; it's a simple controller for the level scene.*/
 public class LevelController : Controller
 {
 
@@ -9,12 +10,6 @@ public class LevelController : Controller
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-    }
-
-
-    void Update()
-    {
-        
     }
 
     public override void ExitTriggered()

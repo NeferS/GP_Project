@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0d157331425afc4691ba3a94fac89b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionsType: 010000000200000006000000
+  interactionsType: 010000000200000005000000
   isOneShot: 0
   coolDown: 0
   startDelay: 0
@@ -305,12 +305,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a85c38bd4ca0449e9f44ed04c48026e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockCursor: 1
   mouseSensitivity: 5
   target: {fileID: 0}
   distFromTarget: 7
   pitchMinMax: {x: -20, y: 45}
   rotationSmoothTime: 3
+  rotationEnabled: 1
   moveSpeed: 6
   returnSpeed: 9
   wallPush: 0.7
