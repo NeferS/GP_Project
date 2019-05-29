@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /*IMPORTED FROM THE '3DGamekit' FREE ASSETS IN THE UNITY STORE.*/
-/*UNUSED*/
 public class SendOnTriggerExit : SendGameCommand
 {
 

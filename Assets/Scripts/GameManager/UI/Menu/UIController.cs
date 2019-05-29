@@ -9,13 +9,11 @@ public class UIController : MonoBehaviour
     [SerializeField] private SettingPopup settingPopup;
     private int count = 0;
 
-    // Start is called before the first frame update
     void Start()
     {
         settingPopup.Close();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape) && count == 0)
@@ -43,9 +41,8 @@ public class UIController : MonoBehaviour
         settingPopup.Close();
     }
 
-    public void SwitchMainScene()
+    public void GotoMainMenu()
     {
-        settingPopup.Close();
-        SceneManager.LoadScene("MainMenu", LoadSceneMode.Additive);
+        SceneManager.LoadScene(0);
     }
 }

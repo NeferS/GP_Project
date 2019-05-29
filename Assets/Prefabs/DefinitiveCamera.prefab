@@ -312,7 +312,7 @@ MonoBehaviour:
   rotationSmoothTime: 3
   rotationEnabled: 1
   moveSpeed: 6
-  returnSpeed: 9
+  returnSpeed: 100
   wallPush: 0.7
   evenCloserDistanceToPlayer: 1
   collisionMask:

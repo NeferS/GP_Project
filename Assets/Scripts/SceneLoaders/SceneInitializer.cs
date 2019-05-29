@@ -7,7 +7,7 @@ using UnityEngine.UI;
  *on the subclasses; this method defines a specific action that has to be done after the fade completation.*/
 public abstract class SceneInitializer : MonoBehaviour
 {
-    [SerializeField] private GameObject _gui;
+    [SerializeField] protected GameObject _gui;
 
     private Image blackPanel;
     private float fadingStep = 0.007f;

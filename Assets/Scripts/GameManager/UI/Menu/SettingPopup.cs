@@ -4,21 +4,8 @@ using UnityEngine.UI;
 
 public class SettingPopup : MonoBehaviour
 {
-    [SerializeField] private Camera camera;
-
-    // Start is called before the first frame update
-
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
+    [SerializeField] private new Camera camera;
+   
     public void OnplayMusic(int selector)
     {
         switch (selector)

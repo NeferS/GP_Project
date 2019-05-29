@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*This class is a subclass of 'GameCommandHandler'.*/
 public class DeathLayer : GameCommandHandler
 {
     public GameObject[] checkpoints;
     public GameObject character;
     private int lastCheckpointIndex = 0;
 
+    /*If the received command is 'Activate', then it places the character in the last checkpoint position. If
+     *the received command is 'Update', then it increases the index for the checkpoints array so when an 'Activate' command
+     *occurs the player will be placed in the next checkpoint.*/
     public override void PerformInteraction(GameCommandType type)
     {
         if(type == GameCommandType.Activate)
@@ -22,6 +26,8 @@ public class DeathLayer : GameCommandHandler
         }
     }
 
+    /*If the playes is not placed in the checkpoint position after the frame ends, then the changes on its Rigidbody
+     *wouldn't have effect.*/
     private IEnumerator WaitForIt()
     {
         yield return new WaitForEndOfFrame();

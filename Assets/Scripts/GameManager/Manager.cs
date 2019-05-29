@@ -19,17 +19,6 @@ public class Manager : MonoBehaviour
 
         StartCoroutine(StartupManager());
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     private IEnumerator StartupManager()
     {
@@ -56,14 +45,7 @@ public class Manager : MonoBehaviour
                 }
             }
 
-            if(numReady > lastReady)
-            {
-                Debug.Log("Progress: " + numReady + "/" + numModules);
-            }
-
             yield return null;
         }
-
-        Debug.Log("All managers started up");
     }
 }

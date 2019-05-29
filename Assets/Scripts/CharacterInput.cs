@@ -55,7 +55,8 @@ public class CharacterInput : MonoBehaviour
     void Update()
     {
 
-        if (_charController.velocity.magnitude > 1f && _step && _charController.isGrounded)
+        if (_charController.velocity.magnitude > 1f && _step && _charController.isGrounded && 
+            (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)))
         {
             _soundSource.PlayOneShot(footStepSound);
             StartCoroutine(WaitForFootSteps(footStepSoundLength));

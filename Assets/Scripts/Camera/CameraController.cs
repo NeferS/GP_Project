@@ -20,7 +20,7 @@ public class CameraController : MonoBehaviour
 
     [Header("Speeds")]
     public float moveSpeed = 5;
-    public float returnSpeed = 9;
+    public float returnSpeed = 100;
     public float wallPush = 0.7f;
 
     [Header("Distances")]
@@ -35,8 +35,6 @@ public class CameraController : MonoBehaviour
     {
         WallCheck();
         CollisionCheck(target.position - transform.forward * distFromTarget);
-
-
 
         if (!pitchLock)
         {
@@ -83,10 +81,7 @@ public class CameraController : MonoBehaviour
 
     private void CollisionCheck(Vector3 retPoint)
     {
-
         RaycastHit hit;
-
-
 
         if (Physics.Linecast(target.position, retPoint, out hit, collisionMask))
         {
@@ -96,16 +91,10 @@ public class CameraController : MonoBehaviour
 
             moveSpeed = 1.7f;
 
-            if (Vector3.Distance(Vector3.Lerp(transform.position, p, moveSpeed * Time.deltaTime), target.position) <= evenCloserDistanceToPlayer)
-            {
-
-
-            }
-            else
+            if (Vector3.Distance(Vector3.Lerp(transform.position, p, moveSpeed * Time.deltaTime), target.position) > evenCloserDistanceToPlayer)
             {
                 transform.position = Vector3.Lerp(transform.position, p, moveSpeed * Time.deltaTime);
             }
-
             return;
 
         }
