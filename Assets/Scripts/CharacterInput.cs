@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
-
 public class CharacterInput : MonoBehaviour
 {
     public Transform target;
@@ -31,19 +30,37 @@ public class CharacterInput : MonoBehaviour
     private bool Oblique_Back_Left = false;
     private bool Oblique_Back_Right = false;
     private bool Back = false;
+    private bool BackCrouch = false;
     private bool Pushing = false;
     private bool Push = false, Pull = false;
+    private bool GroundedAnimation = false;
+    private AudioSource _soundSource;
+    [SerializeField] AudioClip footStepSound;
+    private float footStepSoundLength;
+    private bool _step;
+
+
 
     void Start()
     {
         _charController = GetComponent<CharacterController>();
         _vertSpeed = minFall;
+        _step = true;
+        footStepSoundLength = 0.30f;
         animator = GetComponentInChildren<Animator>();
+        _soundSource = GetComponentInChildren<AudioSource>();
     }
 
 
     void Update()
     {
+
+        if (_charController.velocity.magnitude > 1f && _step && _charController.isGrounded)
+        {
+            _soundSource.PlayOneShot(footStepSound);
+            StartCoroutine(WaitForFootSteps(footStepSoundLength));
+        }
+
         Pushing = false;
         if (movementEnabled)
         {
@@ -59,6 +76,7 @@ public class CharacterInput : MonoBehaviour
                 {
                     animator.SetBool("Crouch_Oblique_Left_Walk", true);
                     Oblique_Forward_Left = true;
+                    footStepSoundLength = 0.6f;
 
                 }
                 else
@@ -73,7 +91,7 @@ public class CharacterInput : MonoBehaviour
 
                     animator.SetBool("Crouch_Oblique_Right_Walk", true);
                     Oblique_Forward_Right = true;
-
+                    footStepSoundLength = 0.6f;
 
                 }
                 else
@@ -83,10 +101,11 @@ public class CharacterInput : MonoBehaviour
 
                 }
 
-                if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.W) && !connected)
+                if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S) && !connected)
                 {
                     animator.SetBool("Crouch_Right", true);
                     side_Right = true;
+                    footStepSoundLength = 0.6f;
                 }
                 else
                 {
@@ -94,20 +113,22 @@ public class CharacterInput : MonoBehaviour
                     side_Right = false;
                 }
 
-                if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.W) && !connected)
+                if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S) && !connected)
                 {
                     animator.SetBool("Crouch_Left", true);
                     side_Left = true;
+                    footStepSoundLength = 0.6f;
                 }
                 else
                 {
                     animator.SetBool("Crouch_Left", false);
-                    side_Left = true;
+                    side_Left = false;
                 }
 
-                if (Input.GetKey(KeyCode.W) && (!Input.GetKeyDown(KeyCode.D) || !Input.GetKeyDown(KeyCode.A)) && !connected)
+                if (Input.GetKey(KeyCode.W) && !Input.GetKeyDown(KeyCode.D) && !Input.GetKeyDown(KeyCode.A) && !connected)
                 {
                     animator.SetBool("Crouch_Forward", true);
+                    footStepSoundLength = 0.6f;
 
                 }
                 else
@@ -116,16 +137,19 @@ public class CharacterInput : MonoBehaviour
 
                 }
 
-                if (Input.GetKey(KeyCode.S) && (!Input.GetKeyDown(KeyCode.D) || !Input.GetKeyDown(KeyCode.A)) && !connected)
+                if (Input.GetKey(KeyCode.S) && !connected)
                 {
                     animator.SetBool("Crouch_Back", true);
+                    footStepSoundLength = 0.6f;
+                    BackCrouch = true;
 
                 }
                 else
                 {
                     animator.SetBool("Crouch_Back", false);
-
+                    BackCrouch = false;
                 }
+
             }
             else
             {
@@ -135,26 +159,32 @@ public class CharacterInput : MonoBehaviour
                 animator.SetBool("Crouch_Left", false);
                 animator.SetBool("Crouch_Right", false);
                 animator.SetBool("Crouch_Forward", false);
+                animator.SetBool("Crouch_Back", false);
 
-                if(Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.S))
+                if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.S))
                 {
                     moveSpeed = 0f;
+                    Pushing = true;
                 }
                 if (!Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A) && !connected)
                 {
                     animator.SetBool("Walk_Left", true);
                     side_Left = true;
+                    footStepSoundLength = 0.6f;
                 }
                 else
                 {
                     animator.SetBool("Walk_Left", false);
                     side_Left = false;
+                    footStepSoundLength = 0.3f;
+
                 }
 
                 if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D) && !connected)
                 {
                     animator.SetBool("Walk_Right", true);
                     side_Right = true;
+                    footStepSoundLength = 0.6f;
                 }
                 else
                 {
@@ -166,7 +196,8 @@ public class CharacterInput : MonoBehaviour
                 {
                     animator.SetBool("Oblique_Right_Back", true);
                     Oblique_Back_Right = true;
- 
+                    footStepSoundLength = 0.6f;
+
                 }
                 else
                 {
@@ -180,6 +211,7 @@ public class CharacterInput : MonoBehaviour
                 {
                     animator.SetBool("Oblique_Left_Back", true);
                     Oblique_Back_Left = true;
+                    footStepSoundLength = 0.6f;
 
                 }
                 else
@@ -193,6 +225,7 @@ public class CharacterInput : MonoBehaviour
                 {
                     animator.SetBool("Back", true);
                     Back = true;
+                    footStepSoundLength = 0.6f;
 
                 }
                 else
@@ -206,7 +239,7 @@ public class CharacterInput : MonoBehaviour
                 if ((!Input.GetKey(KeyCode.A) || !Input.GetKey(KeyCode.D)) && !Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.W) && !connected)
                 {
                     animator.SetBool("Forward", true);
-
+                    footStepSoundLength = 0.3f;
                 }
                 else
                     animator.SetBool("Forward", false);
@@ -215,6 +248,7 @@ public class CharacterInput : MonoBehaviour
                 {
                     animator.SetBool("Push", true);
                     Push = true;
+                    footStepSoundLength = 0.6f;
                 }
                 else
                 {
@@ -226,6 +260,7 @@ public class CharacterInput : MonoBehaviour
                 {
                     animator.SetBool("Pull", true);
                     Pull = true;
+                    footStepSoundLength = 0.6f;
                 }
                 else
                 {
@@ -238,6 +273,7 @@ public class CharacterInput : MonoBehaviour
                 {
                     animator.SetBool("Side_Right", true);
                     Oblique_Forward_Right = true;
+                    footStepSoundLength = 0.6f;
 
                 }
                 else
@@ -251,13 +287,14 @@ public class CharacterInput : MonoBehaviour
                 {
                     animator.SetBool("Side_Left", true);
                     Oblique_Forward_Left = true;
-
+                    footStepSoundLength = 0.6f;
                 }
                 else
                 {
                     animator.SetBool("Side_Left", false);
                     Oblique_Forward_Left = false;
                 }
+            
             }
 
             bool hitGround = false;
@@ -270,21 +307,26 @@ public class CharacterInput : MonoBehaviour
             }
             if (hitGround)
             {
-                if(!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.C)) {
 
-                    if (Input.GetButtonDown("Jump"))
+                animator.SetBool("Grounded", false);
+                if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.C))
+                {
+
+                    if (Input.GetButtonDown("Jump") && !GroundedAnimation)
                     {
                         if (jumpEnabled)
                         {
                             moveSpeed = 0;
                             animator.SetBool("Jump", true);
+                            GroundedAnimation = true;
+                            StartCoroutine(wait());
                             _vertSpeed = jumpSpeed;
                         }
                     }
                     else
                     {
-
-                        moveSpeed = normalSpeed;
+                        //moveSpeed = normalSpeed;
+                        animator.SetBool("Grounded", true);
                         animator.SetBool("Jump", false);
                         _vertSpeed = minFall;
                     }
@@ -293,6 +335,7 @@ public class CharacterInput : MonoBehaviour
             }
             else
             {
+
                 _vertSpeed += gravity * 5 * Time.deltaTime;
                 if (_vertSpeed < terminalVelocity)
                 {
@@ -310,23 +353,38 @@ public class CharacterInput : MonoBehaviour
                         movement += _contact.normal * moveSpeed;
                     }
                 }
-            }
 
-            if(!Pushing && !connected)
+
+            }
+            if (_charController.isGrounded && GroundedAnimation)
             {
-                if (side_Left || side_Right || Oblique_Back_Left || Oblique_Back_Right || Oblique_Forward_Left || Oblique_Forward_Right || Back)
-                    moveSpeed = 3f;
-                else
-                    moveSpeed = normalSpeed;
+                moveSpeed = 0f;
             }
+            else
+            {
+                if (!Pushing && !connected)
+                {
+                    if (side_Left || side_Right || Oblique_Back_Left || Oblique_Back_Right || Oblique_Forward_Left || Oblique_Forward_Right || Back || BackCrouch)
+                        moveSpeed = 3f;
+                    else
+                    {
+                        moveSpeed = normalSpeed;
+                    }
 
-            if (Pull || Push)
-                moveSpeed = 2f;
+                }
+
+                if (Pull || Push)
+                {
+                    moveSpeed = 7f;
+                }
+
+            }
 
             if (horInput != 0 || vertInput != 0)
             {
-                if(!connected)
+                if (!connected && !BackCrouch && _charController.isGrounded)
                     movement.x = horInput * moveSpeed;
+        
                 movement.z = vertInput * moveSpeed;
                 movement = Vector3.ClampMagnitude(movement, moveSpeed);
                 movement = target.TransformDirection(movement);
@@ -337,8 +395,22 @@ public class CharacterInput : MonoBehaviour
             movement *= Time.deltaTime;
             _charController.Move(movement);
 
-
         }
+    }
+
+    IEnumerator WaitForFootSteps(float stepsLength)
+    {
+        _step = false;
+        yield return new WaitForSeconds(stepsLength);
+        _step = true;
+    }
+
+    private IEnumerator wait()
+    {
+
+        yield return new WaitForSeconds(1.3f);
+        GroundedAnimation = false;
+
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)

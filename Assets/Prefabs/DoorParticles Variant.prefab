@@ -135,7 +135,7 @@ PrefabInstance:
     - target: {fileID: 2718112633785543969, guid: 914c09118ee07d144804c6647cdae57b,
         type: 3}
       propertyPath: ShapeModule.m_Scale.x
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2718112633785543969, guid: 914c09118ee07d144804c6647cdae57b,
         type: 3}
