@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 8664030038160743538}
   - component: {fileID: 8756699263703618846}
   - component: {fileID: 8749134124541005877}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: PressurePad
   m_TagString: Untagged
   m_Icon: {fileID: 0}

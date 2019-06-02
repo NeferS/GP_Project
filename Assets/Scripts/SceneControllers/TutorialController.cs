@@ -299,7 +299,7 @@ public class TutorialController : Controller
                     camTutorial = Instantiate(camTutorialPrefab) as GameObject;
                     camTutorial.transform.position = new Vector3(0, 0, 12.5f);
 
-                    TutorialPerspactiveInteractionManager pim = camTutorial.GetComponentInChildren<TutorialPerspactiveInteractionManager>();
+                    PerspectiveSwitchManager pim = camTutorial.GetComponentInChildren<PerspectiveSwitchManager>();
                     pim.characterInput = _player.GetComponent<CharacterInput>();
                     pim.camera = _mainCamera.GetComponentInChildren<GameCommandReceiver>();
 

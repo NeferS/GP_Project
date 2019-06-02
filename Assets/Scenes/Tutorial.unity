@@ -638,7 +638,7 @@ GameObject:
   m_Component:
   - component: {fileID: 590678416}
   - component: {fileID: 590678417}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Barrier2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -748,7 +748,7 @@ GameObject:
   m_Component:
   - component: {fileID: 633014106}
   - component: {fileID: 633014107}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Barrier0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -908,7 +908,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1064100681}
   - component: {fileID: 1064100682}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Barrier3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1040,6 +1040,7 @@ MonoBehaviour:
   scenesNames:
   - MainMenu
   fadingStep: 0.007
+  initialize: 1
 --- !u!1 &1155822758
 GameObject:
   m_ObjectHideFlags: 0
@@ -1608,7 +1609,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1553629257}
   - component: {fileID: 1553629258}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Barrier1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

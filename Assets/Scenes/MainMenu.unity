@@ -173,7 +173,7 @@ MonoBehaviour:
   _gui: {fileID: 1661364354}
   scenesNames:
   - Tutorial
-  - Level
+  - LevelIntro
   fadingStep: 0.007
 --- !u!1 &472143323
 GameObject:

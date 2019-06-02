@@ -868,8 +868,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5091326267993531765}
   - component: {fileID: 1970911200574445773}
-  - component: {fileID: 6768451144957762853}
   - component: {fileID: 64230726366926815}
+  - component: {fileID: 5140731541368517526}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -904,34 +904,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebc9edfab2f379046a31a9e5bc3ef1a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6768451144957762853
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4795969613387116848}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b3e62178a504134e896a72bc8654d59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactionsType: 01000000
-  isOneShot: 1
-  coolDown: 0
-  startDelay: 0
-  characterInput: {fileID: 0}
-  manager: {fileID: 1970911200574445773}
-  camera: {fileID: 0}
-  interactables:
-  - {fileID: 587185107687138472}
-  - {fileID: 5306059508293734091}
-  - {fileID: 2486528261447485891}
-  - {fileID: 4149129333031563895}
-  moveCharacterTime: 3
-  perspectiveSwitchTime: 1
-  cameraResetTime: 1.5
-  interactionTime: 2
 --- !u!114 &64230726366926815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -982,6 +954,34 @@ MonoBehaviour:
   cameraPivot: {fileID: 0}
   cameraTarget: {fileID: 2819417809592679117}
   isCameraLocked: 0
+--- !u!114 &5140731541368517526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4795969613387116848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11708fb7e3e806549af8b563663deae6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionsType: 01000000
+  isOneShot: 1
+  coolDown: 0
+  startDelay: 0
+  characterInput: {fileID: 0}
+  manager: {fileID: 1970911200574445773}
+  camera: {fileID: 0}
+  interactables:
+  - {fileID: 587185107687138472}
+  - {fileID: 5306059508293734091}
+  - {fileID: 2486528261447485891}
+  - {fileID: 4149129333031563895}
+  moveCameraTime: 3
+  perspectiveSwitchTime: 1
+  cameraResetTime: 1.5
+  interactionTime: 2
 --- !u!1 &7117764819198483407
 GameObject:
   m_ObjectHideFlags: 0

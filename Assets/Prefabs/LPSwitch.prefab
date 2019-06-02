@@ -102,6 +102,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2465262021549380773, guid: 00f253468e130c94886fb0db7dcd373e,
+        type: 3}
+      propertyPath: interactables.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4388788610052200578, guid: 00f253468e130c94886fb0db7dcd373e,
+        type: 3}
+      propertyPath: group.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4388788610052200578, guid: 00f253468e130c94886fb0db7dcd373e,
         type: 3}
       propertyPath: group.Array.data[1]
@@ -122,11 +132,6 @@ PrefabInstance:
       propertyPath: group.Array.data[0]
       value: 
       objectReference: {fileID: 1961685886298960006}
-    - target: {fileID: 2465262021549380773, guid: 00f253468e130c94886fb0db7dcd373e,
-        type: 3}
-      propertyPath: interactables.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00f253468e130c94886fb0db7dcd373e, type: 3}
 --- !u!4 &1958358216244028384 stripped
@@ -285,6 +290,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2465262021549380773, guid: 00f253468e130c94886fb0db7dcd373e,
+        type: 3}
+      propertyPath: interactables.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2465262021549380773, guid: 00f253468e130c94886fb0db7dcd373e,
+        type: 3}
+      propertyPath: interactables.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2465262021549380773, guid: 00f253468e130c94886fb0db7dcd373e,
+        type: 3}
+      propertyPath: interactables.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4388788610052200578, guid: 00f253468e130c94886fb0db7dcd373e,
         type: 3}
       propertyPath: group.Array.size
@@ -310,21 +330,6 @@ PrefabInstance:
       propertyPath: group.Array.data[3]
       value: 
       objectReference: {fileID: 8061784032061927777}
-    - target: {fileID: 2465262021549380773, guid: 00f253468e130c94886fb0db7dcd373e,
-        type: 3}
-      propertyPath: interactables.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2465262021549380773, guid: 00f253468e130c94886fb0db7dcd373e,
-        type: 3}
-      propertyPath: interactables.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2465262021549380773, guid: 00f253468e130c94886fb0db7dcd373e,
-        type: 3}
-      propertyPath: interactables.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00f253468e130c94886fb0db7dcd373e, type: 3}
 --- !u!4 &8067362404398363236 stripped
@@ -412,6 +417,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2465262021549380773, guid: 00f253468e130c94886fb0db7dcd373e,
+        type: 3}
+      propertyPath: interactables.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2465262021549380773, guid: 00f253468e130c94886fb0db7dcd373e,
+        type: 3}
+      propertyPath: interactables.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2465262021549380773, guid: 00f253468e130c94886fb0db7dcd373e,
+        type: 3}
+      propertyPath: interactables.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4388788610052200578, guid: 00f253468e130c94886fb0db7dcd373e,
         type: 3}
       propertyPath: group.Array.size
@@ -437,21 +457,6 @@ PrefabInstance:
       propertyPath: group.Array.data[1]
       value: 
       objectReference: {fileID: 8061784032517490735}
-    - target: {fileID: 2465262021549380773, guid: 00f253468e130c94886fb0db7dcd373e,
-        type: 3}
-      propertyPath: interactables.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2465262021549380773, guid: 00f253468e130c94886fb0db7dcd373e,
-        type: 3}
-      propertyPath: interactables.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2465262021549380773, guid: 00f253468e130c94886fb0db7dcd373e,
-        type: 3}
-      propertyPath: interactables.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00f253468e130c94886fb0db7dcd373e, type: 3}
 --- !u!4 &8067362404483291977 stripped
@@ -539,6 +544,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2465262021549380773, guid: 00f253468e130c94886fb0db7dcd373e,
+        type: 3}
+      propertyPath: interactables.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2465262021549380773, guid: 00f253468e130c94886fb0db7dcd373e,
+        type: 3}
+      propertyPath: interactables.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2465262021549380773, guid: 00f253468e130c94886fb0db7dcd373e,
+        type: 3}
+      propertyPath: interactables.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4388788610052200578, guid: 00f253468e130c94886fb0db7dcd373e,
         type: 3}
       propertyPath: group.Array.size
@@ -564,21 +584,6 @@ PrefabInstance:
       propertyPath: group.Array.data[3]
       value: 
       objectReference: {fileID: 8061784032061927777}
-    - target: {fileID: 2465262021549380773, guid: 00f253468e130c94886fb0db7dcd373e,
-        type: 3}
-      propertyPath: interactables.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2465262021549380773, guid: 00f253468e130c94886fb0db7dcd373e,
-        type: 3}
-      propertyPath: interactables.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2465262021549380773, guid: 00f253468e130c94886fb0db7dcd373e,
-        type: 3}
-      propertyPath: interactables.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00f253468e130c94886fb0db7dcd373e, type: 3}
 --- !u!4 &8067362405085733383 stripped

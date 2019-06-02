@@ -19,10 +19,12 @@ public class SceneLoader : MonoBehaviour
     /*if 'true', the script performs the fade to black and loads the new scene*/
     private bool load = false;
     private int _index;
+    public bool initialize = true;
 
     void Start()
     {
-        Reset();
+        if(initialize)
+            Reset();
     }
 
 
@@ -30,7 +32,7 @@ public class SceneLoader : MonoBehaviour
     {
         if(load)
         {
-            if(blackPanel.color.a < 1)
+            if(blackPanel && blackPanel.color.a < 1)
             {
                 blackPanel.color = new Color(0f, 0f, 0f, blackPanel.color.a + fadingStep);
             }
@@ -46,7 +48,8 @@ public class SceneLoader : MonoBehaviour
     {
         load = true;
         _index = index;
-        blackPanel.enabled = true;
+        if(blackPanel)
+            blackPanel.enabled = true;
         foreach (Button btn in _gui.GetComponentsInChildren<Button>())
         {
             btn.enabled = false;

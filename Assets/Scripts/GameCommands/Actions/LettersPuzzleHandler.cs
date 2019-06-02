@@ -6,7 +6,7 @@ using UnityEngine;
 public class LettersPuzzleHandler : GameCommandHandler
 {
     public GameCommandReceiver[] interactables;
-    public float interactionTime = 2.0f;
+    public float interactionTime = 1.0f;
 
     public override void PerformInteraction(GameCommandType type)
     {
@@ -23,6 +23,5 @@ public class LettersPuzzleHandler : GameCommandHandler
         /*resets all the interactables objects in 'interactables'*/
         foreach (GameCommandReceiver receiver in interactables)
             receiver.Receive(GameCommandType.Reset);
-        yield return new WaitForSeconds(interactionTime);
     }
 }

@@ -1035,7 +1035,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be2c9f431cd4e98459dd7d70e1464532, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionsType: 0100000006000000
+  interactionsType: 0100000005000000
   isOneShot: 0
   coolDown: 0
   startDelay: 0
@@ -1070,6 +1070,8 @@ MonoBehaviour:
   OnStopCommand: {fileID: 0}
   onStartAudio: {fileID: 1565514799128682892}
   onEndAudio: {fileID: 0}
+  axis: 1
+  angle: 90
   random: 1
 --- !u!1 &3040957555274200872
 GameObject:
@@ -2476,7 +2478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be2c9f431cd4e98459dd7d70e1464532, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionsType: 0100000006000000
+  interactionsType: 0100000005000000
   isOneShot: 0
   coolDown: 0
   startDelay: 0
@@ -2511,6 +2513,8 @@ MonoBehaviour:
   OnStopCommand: {fileID: 0}
   onStartAudio: {fileID: 1565514799128682892}
   onEndAudio: {fileID: 0}
+  axis: 1
+  angle: 90
   random: 1
 --- !u!1 &6473112451645045951
 GameObject:
@@ -2887,7 +2891,7 @@ GameObject:
   - component: {fileID: 1256884182245592290}
   - component: {fileID: 1565514799128682892}
   m_Layer: 0
-  m_Name: LettersPuzzle
+  m_Name: Letters
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3138,7 +3142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be2c9f431cd4e98459dd7d70e1464532, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionsType: 0100000006000000
+  interactionsType: 0100000005000000
   isOneShot: 0
   coolDown: 0
   startDelay: 0
@@ -3173,6 +3177,8 @@ MonoBehaviour:
   OnStopCommand: {fileID: 0}
   onStartAudio: {fileID: 1565514799128682892}
   onEndAudio: {fileID: 0}
+  axis: 1
+  angle: 90
   random: 1
 --- !u!1 &8140408425917680514
 GameObject:
@@ -3566,7 +3572,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be2c9f431cd4e98459dd7d70e1464532, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionsType: 0100000006000000
+  interactionsType: 0100000005000000
   isOneShot: 0
   coolDown: 0
   startDelay: 0
@@ -3601,6 +3607,8 @@ MonoBehaviour:
   OnStopCommand: {fileID: 0}
   onStartAudio: {fileID: 1565514799128682892}
   onEndAudio: {fileID: 0}
+  axis: 1
+  angle: 90
   random: 1
 --- !u!1 &8772369760763115269
 GameObject:
