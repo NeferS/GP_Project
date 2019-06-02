@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/*This class is a subclass of 'GameCommandHandler'.*/
+/*This class is a subclass of 'GameCommandHandler'. It describes the behaviour of the exit level door.*/
 [RequireComponent(typeof(Collider))]
 public class DoorExitEnabler : GameCommandHandler
 {
@@ -16,7 +16,8 @@ public class DoorExitEnabler : GameCommandHandler
             ParticleSystem[] particles = GetComponentsInChildren<ParticleSystem>();
             foreach(ParticleSystem particle in particles)
                 particle.Play();
-        } else if(type == GameCommandType.Deactivate)
+        }
+        else if(type == GameCommandType.Deactivate)
         {
             GetComponent<Collider>().enabled = false;
             ParticleSystem[] particles = GetComponentsInChildren<ParticleSystem>();

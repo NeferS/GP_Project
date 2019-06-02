@@ -22,6 +22,9 @@ public class LevelController : Controller
 
     public override void ExitTriggered()
     {
-        throw new System.NotImplementedException();
+        SceneLoader sl = GetComponent<SceneLoader>();
+        sl.enabled = true;
+        sl.Reset();
+        sl.Load(1);
     }
 }

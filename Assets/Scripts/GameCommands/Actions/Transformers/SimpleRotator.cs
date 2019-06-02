@@ -6,13 +6,13 @@ using UnityEngine;
 public class SimpleRotator : SimpleTransformer
 {
     public enum Axis { X, Y, Z}
-
+    /*The axis on with the object will be rotated*/
     public Axis axis;
     public float angle = 90f;
+    /*If 'true' the initial rotation of the object will be randomized*/
     public bool random = false;
-    private Vector3 rotationAxis;
-    private Vector3 start;
-    private Vector3 end;
+
+    private Vector3 rotationAxis, start, end;
 
     void Start()
     {
@@ -61,6 +61,7 @@ public class SimpleRotator : SimpleTransformer
         transform.localEulerAngles = Vector3.Lerp(start, end, curve);
     }
 
+    /*Randomizes the initial rotation of the object.*/
     private IEnumerator Randomize()
     {
         int r = Random.Range(1, (int)(360/angle));

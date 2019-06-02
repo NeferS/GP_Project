@@ -8,16 +8,21 @@ using UnityEngine.UI;
 public class DeltaTimeText : MonoBehaviour
 {
     public string text;
-    public Text target;
+    public GameObject target;
     public float deltaTime;
     public bool isOneShot = false;
     bool triggered = false;
 
+    void Start()
+    {
+        target.SetActive(false);
+    }
+
     void OnTriggerEnter()
     {
         if (isOneShot && triggered) return;
-        target.enabled = true;
-        target.text = text;
+        target.SetActive(true);
+        target.GetComponent<Text>().text = text;
         StartCoroutine(Disable());
         triggered = true;
     }
@@ -25,7 +30,7 @@ public class DeltaTimeText : MonoBehaviour
     private IEnumerator Disable()
     {
         yield return new WaitForSeconds(deltaTime);
-        target.text = "";
-        target.enabled = false;
+        target.GetComponent<Text>().text = "";
+        target.SetActive(false);
     }
 }

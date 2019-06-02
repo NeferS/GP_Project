@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-/*This class is a subclass of Interactable and defines the behaviour of the objects that interact with a Text component in a Canvas.*/
+/*This class defines the behaviour of the objects that interact with a Text component in a Canvas.*/
 public class TextInteraction : MonoBehaviour
 {
     [SerializeField] private string text;
-    [SerializeField] private Text target;
+    [SerializeField] private GameObject target;
 
     void OnTriggerEnter(Collider other)
     {
         if(other.GetComponent<CharacterController>() && text != null)
         {
-            target.enabled = true;
-            target.text = text;
+            target.SetActive(true);
+            target.GetComponent<Text>().text = text;
         }
     }
 
@@ -22,8 +22,8 @@ public class TextInteraction : MonoBehaviour
     {
         if(other.GetComponent<CharacterController>())
         {
-            target.enabled = false;
-            target.text = "";
+            target.GetComponent<Text>().text = "";
+            target.SetActive(false);
         }
     }
 }

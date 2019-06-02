@@ -58,10 +58,11 @@ public class SceneLoader : MonoBehaviour
         }
     }
 
+    /*Gets an Image component from the canvas or creates one if it does not exist.*/
     public void Reset()
     {
         Image img = _gui.GetComponent<Image>();
-        if (img != null)
+        if (img)
             blackPanel = img;
         else
             blackPanel = _gui.AddComponent<Image>();

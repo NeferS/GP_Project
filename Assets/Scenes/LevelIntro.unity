@@ -461,6 +461,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textComponent: {fileID: 1176175331}
   timeBeforeFade: 3
+  messages:
+  - Everything happened just one week ago. Before that moment, everything was going
+    fine.
+  - It was a normal night with my girlfriend, we went out to enjoy the nightlife.
+    I drunk a lot...
+  - '... maybe too much. We shouldn''t have taken the car.'
+  - I am Remy... I have to face what I've done and mend the broken pieces of my mind.
 --- !u!1 &1176175329
 GameObject:
   m_ObjectHideFlags: 0

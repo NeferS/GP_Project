@@ -26,11 +26,11 @@ public class DeathLayer : GameCommandHandler
         }
     }
 
-    /*If the playes is not placed in the checkpoint position after the frame ends, then the changes on its Rigidbody
-     *wouldn't have effect.*/
+    /*If the player was not placed in the checkpoint position after a delta time, the changes on its Rigidbody
+     *wouldn't have had effect.*/
     private IEnumerator WaitForIt()
     {
-        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(0.5f);
         character.transform.position = checkpoints[lastCheckpointIndex].transform.position;
         character.GetComponent<Rigidbody>().isKinematic = true;
     }

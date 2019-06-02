@@ -12,7 +12,6 @@ public class CharacterInteractions : MonoBehaviour
     void Update()
     {
         Ray ray = new Ray(transform.position + Vector3.up, GetComponentInChildren<Animator>().transform.forward);
-        //Debug.DrawRay(transform.position, GetComponentInChildren<Animator>().transform.forward, Color.green);
 
         RaycastHit hit;
         GameObject hitObject = null;
@@ -20,7 +19,7 @@ public class CharacterInteractions : MonoBehaviour
         {
             hitObject = hit.transform.gameObject;
             Interactable interactable = hitObject.GetComponent<Interactable>();
-            if (interactable != null && interactable.enabled)
+            if (interactable && interactable.enabled)
             {
                 if (hit.distance <= distanceFromInteractable && !interactable.isInteracting())
                 {
@@ -28,10 +27,11 @@ public class CharacterInteractions : MonoBehaviour
                 }
                 else if (hit.distance > distanceFromInteractable) { hitObject.GetComponent<Interactable>().Activate(false); }
             }
+            else
+                hitObject = null;
         }
-        if (Input.GetKeyDown(KeyCode.E) && hitObject != null && hit.distance <= distanceFromInteractable)
+        if (Input.GetKeyDown(KeyCode.E) && hitObject && hit.distance <= distanceFromInteractable)
         {
-
             hitObject.GetComponent<Interactable>().RealizeInteraction(gameObject);
         }
     }

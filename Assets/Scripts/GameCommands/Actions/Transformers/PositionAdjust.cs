@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
-/*This script lerps the camera position and the camera rotation to the target position and rotation for a camera interaction*/
+/*This class is a subclass of 'SimpleTranformer'. This script lerps the camera position and the camera rotation to the target position 
+ *and rotation for a camera interaction*/
 public class PositionAdjust : SimpleTransformer
 {
     public Transform cameraPivot;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*This class is a subclass of 'GameCommandHandler'. It describes the behaviour of a normal door opening system using its animator.*/
 [RequireComponent(typeof(Animator))]
 public class AnimatorTrigger : GameCommandHandler
 {

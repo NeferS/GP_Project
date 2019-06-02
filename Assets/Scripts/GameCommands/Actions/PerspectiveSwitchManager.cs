@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*This class is a subclass of 'GameCommandHandler'. It performs all the operations in order to switch the camera view, move each interactable
+ *object and then switch back the camera view.*/
 public class PerspectiveSwitchManager : GameCommandHandler
 {
     public CharacterInput characterInput;

@@ -15,6 +15,7 @@ public class LettersPuzzleSwitch : Interactable
      *be performed just once, the script is disabled*/
     public override void RealizeInteraction(GameObject obj)
     {
+        /*If the other switches are interacting, this switch can't interact*/
         bool canInteract = true;
         foreach(LettersPuzzleSwitch interactable in group)
             if(interactable.isInteracting())

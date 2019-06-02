@@ -40,9 +40,4 @@ public class UIController : MonoBehaviour
     {
         settingPopup.Close();
     }
-
-    public void GotoMainMenu()
-    {
-        SceneManager.LoadScene(0);
-    }
 }
