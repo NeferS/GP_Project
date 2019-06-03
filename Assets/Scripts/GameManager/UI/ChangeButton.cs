@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+
 public class ChangeButton : MonoBehaviour
 {
 
@@ -14,18 +15,13 @@ public class ChangeButton : MonoBehaviour
     [SerializeField] private bool YesEnable;
     [SerializeField] private bool NoEnable;
 
-    // Start is called before the first frame update
     void Start()
     {
-       //Color color = yes.colors;
-        //color.a = transparency;
-        //ButtonBackground.color = color;
-        //yes.colors = 
         yes.interactable = YesEnable;
         no.interactable = NoEnable;
     }
 
-    // Update is called once per frame
+
     void Update()
     {
 

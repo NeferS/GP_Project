@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*IMPORTED FROM LESSON*/
 public interface IGameManager
 {
     ManagerStatus status { get; }

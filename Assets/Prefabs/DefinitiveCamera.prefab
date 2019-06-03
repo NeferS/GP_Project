@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 53553895}
   - component: {fileID: 1029972290}
   - component: {fileID: 53553894}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: MainCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -223,7 +223,7 @@ GameObject:
   m_Component:
   - component: {fileID: 926089920}
   - component: {fileID: 926089921}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: DefinitiveCamera
   m_TagString: Untagged
   m_Icon: {fileID: -215833656, guid: 0000000000000000d000000000000000, type: 0}
@@ -271,7 +271,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1115596619}
   - component: {fileID: 1041508958}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Pivot
   m_TagString: Untagged
   m_Icon: {fileID: -1500306622, guid: 0000000000000000d000000000000000, type: 0}

@@ -5,10 +5,10 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour, IGameManager
 {
     public ManagerStatus status { get; private set; }
-    //[SerializeField] private string introBGMusic;
     [SerializeField] private string levelBGMusic;
     [SerializeField] private AudioSource soundSource;
     [SerializeField] private AudioSource musicSource;
+
     public void Startup()
     {
 
@@ -20,17 +20,6 @@ public class AudioManager : MonoBehaviour, IGameManager
         status = ManagerStatus.Started;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     public float musicVolume
     {
         get
@@ -81,11 +70,6 @@ public class AudioManager : MonoBehaviour, IGameManager
     {
         soundSource.PlayOneShot(clip);
     }
-
-    /*public void PlayIntroMusic()
-    {
-        PlayMusic((AudioClip)Resources.Load("Music/" + introBGMusic));
-    }*/
 
     public void PlayLevelMusic()
     {

@@ -17,9 +17,9 @@ public class TutorialController : Controller
     [SerializeField] private GameObject _wasdCheckBox;
 
     //jump and crouch objects
-    [SerializeField] private Text _jcTxt;
-    [SerializeField] private Image _jcPanelImg, _jcImg;
-    [SerializeField] private GameObject _jcCheckBox;
+    [SerializeField] private Text _jTxt;
+    [SerializeField] private Image _jPanelImg, _jImg;
+    [SerializeField] private GameObject _jCheckBox;
 
     /*Interactable Section*/
     //push and pull objects
@@ -49,9 +49,9 @@ public class TutorialController : Controller
     private const int Q0 = 0, Q1 = 1, Q2 = 2, Q3 = 3, Q4 = 4, Q5 = 5, Q6 = 6, Q7 = 7, Q8 = 8,
                       Q9 = 9, Q10 = 10, Q11 = 11, Q12 = 12, Q13 = 13, Q14 = 14;
     /*Simple map between the keys pressed and the positions in an array*/
-    private const int W = 0, A = 1, S = 2, D = 3, SPACE = 4, C = 5, E = 6, V = 7;
+    private const int W = 0, A = 1, S = 2, D = 3, SPACE = 4, E = 5, V = 6;
 
-    private bool[] keysPressed = { false, false, false, false, false, false, false, false };
+    private bool[] keysPressed = { false, false, false, false, false, false, false };
     private bool exitTriggered = false;
 
     void Start()
@@ -154,10 +154,10 @@ public class TutorialController : Controller
                     _wasdTxt.enabled = false;
                     _wasdImg.enabled = false;
 
-                    _jcPanelImg.enabled = true;
-                    _jcCheckBox.GetComponent<Image>().enabled = true;
-                    _jcTxt.enabled = true;
-                    _jcImg.enabled = true;
+                    _jPanelImg.enabled = true;
+                    _jCheckBox.GetComponent<Image>().enabled = true;
+                    _jTxt.enabled = true;
+                    _jImg.enabled = true;
                     q = Q5;
                     _player.GetComponent<CharacterInput>().EnableJump(true);
                     _player.GetComponent<CharacterInput>().EnableCrouch(true);
@@ -166,37 +166,36 @@ public class TutorialController : Controller
             /*If the player jumps and crouches, than the current state switches to Q6 to fade out the tips.*/
             case Q5:
                 if (Input.GetKeyDown(KeyCode.Space)) { keysPressed[SPACE] = true; }
-                if (Input.GetKeyDown(KeyCode.C)) { keysPressed[C] = true; }
-                if(keysPressed[SPACE] && keysPressed[C])
+                if(keysPressed[SPACE])
                 {
-                    SetFull(_jcCheckBox);
+                    SetFull(_jCheckBox);
                     q = Q6;
                 }
                 break;
             case Q6:
-                if (_jcTxt.color.a > 0)
+                if (_jTxt.color.a > 0)
                 {
-                    if (_jcTxt.color.a <= 100)
+                    if (_jTxt.color.a <= 100)
                     {
-                        _jcPanelImg.color = new Color(_jcPanelImg.color.r, _jcPanelImg.color.g, _jcPanelImg.color.b,
-                                                      _jcPanelImg.color.a - alphaVariationPerStep * 2);
+                        _jPanelImg.color = new Color(_jPanelImg.color.r, _jPanelImg.color.g, _jPanelImg.color.b,
+                                                     _jPanelImg.color.a - alphaVariationPerStep * 2);
                     }
-                    Color cbColor = _jcCheckBox.GetComponent<Image>().color;
-                    _jcCheckBox.GetComponent<Image>().color = new Color(cbColor.r, cbColor.g, cbColor.b,
+                    Color cbColor = _jCheckBox.GetComponent<Image>().color;
+                    _jCheckBox.GetComponent<Image>().color = new Color(cbColor.r, cbColor.g, cbColor.b,
                                                                 cbColor.a - alphaVariationPerStep * 2);
-                    _jcTxt.color = new Color(_jcTxt.color.r, _jcTxt.color.g, _jcTxt.color.b,
-                                             _jcTxt.color.a - alphaVariationPerStep * 2);
-                    _jcImg.color = new Color(_jcImg.color.r, _jcImg.color.g, _jcImg.color.b,
-                                             _jcImg.color.a - alphaVariationPerStep * 2);
+                    _jTxt.color = new Color(_jTxt.color.r, _jTxt.color.g, _jTxt.color.b,
+                                            _jTxt.color.a - alphaVariationPerStep * 2);
+                    _jImg.color = new Color(_jImg.color.r, _jImg.color.g, _jImg.color.b,
+                                             _jImg.color.a - alphaVariationPerStep * 2);
                 }
                 /*Once the tips have been faded out, the machine shows new tips about the interactable objects and instantiate
                  *into the scene a box that can be pulled and pushed.*/
                 else
                 {
-                    _jcPanelImg.enabled = false;
-                    _jcCheckBox.GetComponent<Image>().enabled = false;
-                    _jcTxt.enabled = false;
-                    _jcImg.enabled = false;
+                    _jPanelImg.enabled = false;
+                    _jCheckBox.GetComponent<Image>().enabled = false;
+                    _jTxt.enabled = false;
+                    _jImg.enabled = false;
 
                     _interactPanelImg.enabled = true;
                     _interactCheckBox.GetComponent<Image>().enabled = true;

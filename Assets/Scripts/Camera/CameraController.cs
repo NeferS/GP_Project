@@ -101,7 +101,8 @@ public class CameraController : MonoBehaviour
 
         
         moveSpeed = 5f;
-        transform.position = Vector3.Lerp(transform.position, retPoint, returnSpeed * Time.deltaTime);
+        transform.position = retPoint;
+        //transform.position = Vector3.Lerp(transform.position, retPoint, returnSpeed * Time.deltaTime);
         pitchLock = false;
     }
 

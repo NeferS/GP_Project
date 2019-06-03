@@ -979,10 +979,10 @@ MonoBehaviour:
   _wasdPanelImg: {fileID: 529380051}
   _wasdImg: {fileID: 470800200}
   _wasdCheckBox: {fileID: 373576900}
-  _jcTxt: {fileID: 1375148541}
-  _jcPanelImg: {fileID: 1251178098}
-  _jcImg: {fileID: 1736685659}
-  _jcCheckBox: {fileID: 1263608743}
+  _jTxt: {fileID: 1375148541}
+  _jPanelImg: {fileID: 1251178098}
+  _jImg: {fileID: 1736685659}
+  _jCheckBox: {fileID: 1263608743}
   boxPrefab: {fileID: 519327646, guid: 0a0253d0cf958ee41a0d05bd43245392, type: 3}
   _interactTxt: {fileID: 1475795397}
   _interactPanelImg: {fileID: 1993686340}
@@ -1222,7 +1222,7 @@ GameObject:
   - component: {fileID: 1251178099}
   - component: {fileID: 1251178098}
   m_Layer: 0
-  m_Name: Movement_JumpCrouchPanel
+  m_Name: Movement_JumpPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1373,7 +1373,7 @@ GameObject:
   - component: {fileID: 1375148542}
   - component: {fileID: 1375148541}
   m_Layer: 0
-  m_Name: JC_Txt
+  m_Name: J_Txt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1431,7 +1431,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Press 'space' to jump, hold 'C' to crouch.
+  m_Text: Press 'space' to jump.
 --- !u!222 &1375148542
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1730,6 +1730,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DefinitivePlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 1296017820, guid: 01823aa611046e040aa6906419bb4def, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 765478147}
     - target: {fileID: 1296017824, guid: 01823aa611046e040aa6906419bb4def, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1774,10 +1778,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1296017820, guid: 01823aa611046e040aa6906419bb4def, type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 765478147}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01823aa611046e040aa6906419bb4def, type: 3}
 --- !u!1 &1736685657
@@ -1792,7 +1792,7 @@ GameObject:
   - component: {fileID: 1736685660}
   - component: {fileID: 1736685659}
   m_Layer: 0
-  m_Name: JC_Img
+  m_Name: J_Img
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1815,7 +1815,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 16, y: -34.55}
-  m_SizeDelta: {x: 145.4, y: 69.1}
+  m_SizeDelta: {x: 69, y: 69.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1736685659
 MonoBehaviour:

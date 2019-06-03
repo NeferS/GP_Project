@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*IMPORTED FROM LESSON*/
 [RequireComponent(typeof(AudioManager))]
-
 public class Manager : MonoBehaviour
 {
 

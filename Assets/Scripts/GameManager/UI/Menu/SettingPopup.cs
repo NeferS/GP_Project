@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+/*IMPORTED FROM LESSON.*/
 public class SettingPopup : MonoBehaviour
 {
     [SerializeField] private new Camera camera;
-   
     public void OnplayMusic(int selector)
     {
         switch (selector)
