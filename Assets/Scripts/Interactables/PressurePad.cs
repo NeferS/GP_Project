@@ -15,13 +15,13 @@ public class PressurePad : MonoBehaviour
     }
 
     /*Pushes down the pressure pad and changes its color*/
-    void OnTriggerEnter()
+    void OnTriggerStay(Collider coll)
     {
         animator.SetBool("Activate", true);
     }
 
     /*Pulles up the pressure pad and restores its original color*/
-    void OnTriggerExit()
+    void OnTriggerExit(Collider coll)
     {
         animator.SetBool("Activate", false);
     }

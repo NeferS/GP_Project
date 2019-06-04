@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 53553899}
   - component: {fileID: 53553898}
   - component: {fileID: 53553897}
-  - component: {fileID: 53553896}
   - component: {fileID: 53553895}
   - component: {fileID: 1029972290}
   - component: {fileID: 53553894}
@@ -90,14 +89,6 @@ Behaviour:
   m_Enabled: 1
 --- !u!124 &53553897
 Behaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 53553892}
-  m_Enabled: 1
---- !u!81 &53553896
-AudioListener:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -270,7 +261,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1115596619}
-  - component: {fileID: 1041508958}
+  - component: {fileID: 3912515435752892926}
   m_Layer: 15
   m_Name: Pivot
   m_TagString: Untagged
@@ -293,7 +284,7 @@ Transform:
   m_Father: {fileID: 926089920}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1041508958
+--- !u!114 &3912515435752892926
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -302,22 +293,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1041508957}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a85c38bd4ca0449e9f44ed04c48026e, type: 3}
+  m_Script: {fileID: 11500000, guid: 105d1a43315934cf3abe3d678ee56bb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitivity: 5
   target: {fileID: 0}
-  distFromTarget: 7
-  pitchMinMax: {x: -20, y: 45}
-  rotationSmoothTime: 3
-  rotationEnabled: 1
-  moveSpeed: 6
-  returnSpeed: 100
-  wallPush: 0.7
-  evenCloserDistanceToPlayer: 1
-  collisionMask:
-    serializedVersion: 2
-    m_Bits: 1
+  rotSpeed: 1.5
 --- !u!1 &1148804576
 GameObject:
   m_ObjectHideFlags: 0

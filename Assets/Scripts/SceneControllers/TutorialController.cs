@@ -62,7 +62,6 @@ public class TutorialController : Controller
         _t1.color = new Color(_t1.color.r, _t1.color.g, _t1.color.b, 0);
         _player.GetComponent<CharacterInput>().EnableMovement(false);
         _player.GetComponent<CharacterInput>().EnableJump(false);
-        _player.GetComponent<CharacterInput>().EnableCrouch(false);
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -160,7 +159,6 @@ public class TutorialController : Controller
                     _jImg.enabled = true;
                     q = Q5;
                     _player.GetComponent<CharacterInput>().EnableJump(true);
-                    _player.GetComponent<CharacterInput>().EnableCrouch(true);
                 }
                 break;
             /*If the player jumps and crouches, than the current state switches to Q6 to fade out the tips.*/
@@ -202,10 +200,10 @@ public class TutorialController : Controller
                     _interactTxt.enabled = true;
                     _interactImg.enabled = true;
                     
-                    _player.transform.localPosition = new Vector3(0.0f, 1.5f, 0.0f);
+                    _player.transform.localPosition = new Vector3(0.0f, 0.53f, 0.0f);
                     _player.transform.rotation = new Quaternion(0.0f, 0.0f, 0.0f, 0.0f);
                     box = Instantiate(boxPrefab) as GameObject;
-                    box.transform.position = _player.transform.position + new Vector3(0.0f, -1.0f, 10.0f);
+                    box.transform.position = _player.transform.position + new Vector3(0.0f, -0.03f, 10.0f);
 
                     q = Q7;
                 }
@@ -288,7 +286,7 @@ public class TutorialController : Controller
                     _cameraCheckBox.GetComponent<Image>().enabled = true;
                     _cameraTxt.enabled = true;
                     
-                    _player.transform.localPosition = new Vector3(-10f, 1.5f, 19.0f);
+                    _player.transform.localPosition = new Vector3(-10f, 0.53f, 19.0f);
                     _player.transform.rotation = new Quaternion(0.0f, 0.0f, 0.0f, 0.0f);
                     Vector3 angles = _player.transform.localEulerAngles;
                     _player.transform.localEulerAngles = new Vector3(angles.x, 60.0f, angles.z);
@@ -296,7 +294,7 @@ public class TutorialController : Controller
                     Destroy(box);
                     box = null;
                     camTutorial = Instantiate(camTutorialPrefab) as GameObject;
-                    camTutorial.transform.position = new Vector3(0, 0, 12.5f);
+                    camTutorial.transform.position = new Vector3(0, 0, 12f);
 
                     PerspectiveSwitchManager pim = camTutorial.GetComponentInChildren<PerspectiveSwitchManager>();
                     pim.characterInput = _player.GetComponent<CharacterInput>();

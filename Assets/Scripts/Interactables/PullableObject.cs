@@ -44,7 +44,6 @@ public class PullableObject : Interactable
         fj.connectedBody = with.GetComponent<Rigidbody>();
         CharacterInput character = with.GetComponent<CharacterInput>();
         character.EnableJump(false);
-        character.EnableCrouch(false);
         character.SetConnected(true);
         character.target.GetComponent<CameraController>().EnableRotation(false);
     }
@@ -59,7 +58,6 @@ public class PullableObject : Interactable
         Destroy(GetComponent<FixedJoint>());
         CharacterInput character = with.GetComponent<CharacterInput>();
         character.EnableJump(true);
-        character.EnableCrouch(true);
         character.SetConnected(false);
         character.target.GetComponent<CameraController>().EnableRotation(true);
     }

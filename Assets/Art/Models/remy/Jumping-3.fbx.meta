@@ -140,7 +140,6 @@ ModelImporter:
     400132: mixamorig:Spine1
     400134: mixamorig:Spine2
     7400000: mixamo.com
-    9500000: //RootNode
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -182,9 +181,9 @@ ModelImporter:
       hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
-      loopBlendOrientation: 0
+      loopBlendOrientation: 1
       loopBlendPositionY: 1
-      loopBlendPositionXZ: 0
+      loopBlendPositionXZ: 1
       keepOriginalOrientation: 0
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0

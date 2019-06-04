@@ -2444,7 +2444,8 @@ GameObject:
   - component: {fileID: 1296017823}
   - component: {fileID: 1296017822}
   - component: {fileID: 1296017821}
-  - component: {fileID: 1296017820}
+  - component: {fileID: 6429290928857968785}
+  - component: {fileID: 9047098441287025640}
   m_Layer: 14
   m_Name: DefinitivePlayer
   m_TagString: Untagged
@@ -2514,7 +2515,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b558f45a3e789c4399d344b3f3e10a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1296017820
+--- !u!114 &6429290928857968785
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2523,21 +2524,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 1296017819}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b58cc7e0be9f64fe6808c67e2a5639ce, type: 3}
+  m_Script: {fileID: 11500000, guid: 664aec4c7b765410b8a29053fb83989f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  rotSpeed: 6
-  moveSpeed: 5
-  jumpSpeed: 15
+  rotSpeed: 15
+  moveSpeed: 8
+  jumpSpeed: 16.5
   gravity: -9.8
   terminalVelocity: -10
-  minFall: -10
-  movementEnabled: 1
-  jumpEnabled: 1
-  crouchEnabled: 1
-  connected: 0
+  minFall: -6.5
   footStepSound: {fileID: 8300000, guid: 8c95f4a620ab204439fe283dc9da403b, type: 3}
+  connected: 0
+--- !u!81 &9047098441287025640
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1296017819}
+  m_Enabled: 1
 --- !u!1 &1306028371
 GameObject:
   m_ObjectHideFlags: 0
@@ -5138,7 +5144,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0
