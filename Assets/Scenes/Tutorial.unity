@@ -123,6 +123,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DefinitiveCamera
       objectReference: {fileID: 0}
+    - target: {fileID: 1115596619, guid: 583c44207f662da4c8f632de3a0076a5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3.92
+      objectReference: {fileID: 0}
     - target: {fileID: 926089920, guid: 583c44207f662da4c8f632de3a0076a5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -171,10 +175,6 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1757838167}
-    - target: {fileID: 1115596619, guid: 583c44207f662da4c8f632de3a0076a5, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -5.92
-      objectReference: {fileID: 0}
     - target: {fileID: 3912515435752892926, guid: 583c44207f662da4c8f632de3a0076a5,
         type: 3}
       propertyPath: target
@@ -409,7 +409,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Sometimes you can't reach a spot in the map, because of its position. Than,
+  m_Text: Sometimes you can't reach a spot in the map, because of its position. Then,
     you can interact with a special object to change your point of view. Try to interact
     with the red switch.
 --- !u!1 &463928983
@@ -1739,6 +1739,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DefinitivePlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 6429290928857968785, guid: 01823aa611046e040aa6906419bb4def,
+        type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 765478147}
     - target: {fileID: 1296017820, guid: 01823aa611046e040aa6906419bb4def, type: 3}
       propertyPath: target
       value: 
@@ -1787,11 +1792,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6429290928857968785, guid: 01823aa611046e040aa6906419bb4def,
-        type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 765478147}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01823aa611046e040aa6906419bb4def, type: 3}
 --- !u!4 &1724155609 stripped
